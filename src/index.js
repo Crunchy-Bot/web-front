@@ -15,6 +15,7 @@ import Home from './pages/Home';
 import Commands from './pages/Commands';
 import Faq from './pages/Faq';
 import NotFound from "./pages/NotFound";
+import Collections from "./pages/Collections";
 
 import reportWebVitals from './reportWebVitals';
 
@@ -29,6 +30,7 @@ ReactDOM.render(
                        <Route path="/home" component={ Home } />
                        <Route path="/commands" component={ Commands } />
                        <Route path="/faq" component={ Faq } />
+                       <Route path="/collections" component={ Collections } />
                        <Route component={ NotFound } />
                    </Switch>
                </div>

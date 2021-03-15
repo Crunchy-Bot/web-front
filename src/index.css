@@ -4,7 +4,10 @@
 
 :root {
   --crunchyroll: rgb(232, 126, 21);
-  --crunchyroll_bright: #FF9900;
+  --crunchyrollBright: #FF9900;
+  --discord: #2C2F33;
+  --discordDark: #23272A;
+  --cardbg: #23272A;
 }
 
 body {
@@ -28,11 +31,19 @@ code {
 }
 
 .bg-discord {
-  background: #2C2F33;
+  background: var(--discord);
 }
 
 .bg-discord-dark {
-  background: #23272A;
+  background: var(--discordDark);
+}
+
+.text-discord {
+  color: var(--discord);
+}
+
+.text-discord-dark {
+  color: var(--discordDark);
 }
 
 .shadow-embed {
@@ -44,7 +55,11 @@ code {
 }
 
 .text-crunchy {
-  color: var(--crunchyroll_bright);
+  color: var(--crunchyrollBright);
+}
+
+.hover\:text-crunchy:hover {
+  color: var(--crunchyrollBright);
 }
 
 .loader-slide-from-above-1 {
@@ -101,4 +116,9 @@ code {
   to {
     transform: translateX(0);
   }
+}
+
+
+.bg-card {
+  background: var(--cardbg);
 }
