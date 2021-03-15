@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --crunchyroll: rgb(232, 126, 21);
+  --crunchyroll_bright: #FF9900;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background: url("https://cdn.discordapp.com/attachments/680350705038393344/820970351323381770/bg7.jpg") no-repeat fixed;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.border-b-3 {
+   border-bottom-width: 3px;
+}
+
+.bg-discord {
+  background: #2C2F33;
+}
+
+.bg-discord-dark {
+  background: #23272A;
+}
+
+.shadow-embed {
+    box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.border-crunchy {
+  border-color: var(--crunchyroll);
+}
+
+.text-crunchy {
+  color: var(--crunchyroll_bright);
+}
+
+.loader-slide-from-above-1 {
+  animation: from-above 0.4s linear;
+}
+
+.loader-slide-from-left-1 {
+  animation: from-left 0.2s ease-in-out;
+}
+
+.loader-slide-from-left-1\/2 {
+  animation: from-left 0.4s ease-in-out;
+}
+
+.loader-slide-from-left-2 {
+  animation: from-left 0.6s ease-in-out;
+}
+
+.loader-slide-from-right-1 {
+  animation: from-right 0.4s ease-in-out;
+}
+
+.loader-slide-from-right-1\/2 {
+  animation: from-right 0.5s ease-in-out;
+}
+
+.loader-slide-from-right-2 {
+  animation: from-right 0.8s ease-in-out;
+}
+
+@keyframes from-above {
+  from {
+    transform: translateY(-600px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes from-left {
+  from {
+    transform: translateX(-1000px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes from-right {
+  from {
+    transform: translateX(1000px);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
