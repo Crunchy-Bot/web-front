@@ -58,6 +58,10 @@ code {
   color: var(--crunchyrollBright);
 }
 
+.bg-crunchy {
+  background: var(--crunchyroll);
+}
+
 .hover\:text-crunchy:hover {
   color: var(--crunchyrollBright);
 }

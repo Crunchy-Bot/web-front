@@ -25,7 +25,6 @@ function Card(props) {
     const title = info.title;
     const thumb = info.thumb;
     const desc = info.desc;
-    const rating = info.rating;
     const url = info.url;
     const isAlreadyBookmarked = info.isBookmarked;
     const isAlreadyFavourites = info.isFavourite;
@@ -47,16 +46,6 @@ function Card(props) {
         }, []);
 
     const isMobile = windowDimension <= 640;
-
-    let stars = [];
-    for (let i = 0; i < rating; i++) {
-        stars.push(
-            <svg key={ i } className="object-contain w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-        )
-    }
-
 
     let [isFavourite, toggleFavourite] = useState(isAlreadyBookmarked);
     let [isWatchlist, toggleWatchlist] = useState(isAlreadyFavourites);
@@ -92,22 +81,19 @@ function Card(props) {
     );
 
     const description = (
-        <p className="text-white text-sm xl:text-base font-medium pb-4 xl:pr-0 my-0 xl:my-2">
+        <p className="text-white text-sm xl:text-base font-medium pb-4 pl-2 xl:pl-0 xl:pr-0 my-0 xl:my-2">
             { desc }...
         </p>
     );
 
     return (
-        <div className="flex flex-col bg-card shadow-embed rounded-lg w-10/12 xl:w-3/5" style={{maxWidth: 600 + 'px', minHeight: 16 + 'rem'}}>
+        <div className="flex flex-col bg-card shadow-embed rounded-lg w-full xl:h-64 xl:m-8 xl:pr-4" style={{maxWidth: 450 + 'px', minHeight: 16 + 'rem'}}>
             <div className="flex w-full">
                 <img className="object-contain rounded-lg shadow-embed transform -translate-x-4 -translate-y-4 h-40" src={ thumb } alt=""/>
                 <div className="flex flex-col cursor-default py-2">
                     <div className="flex flex-wrap justify-start xl:justify-between items-center w-full">
                         <div className="flex flex-col xl:flex-row justify-between items-start xl:items-center space-x-0 xl:space-x-4 w-full xl:w-auto pl-4 xl:pl-0">
-                            <h1 className="text-white text-center xl:text-left text-lg xl:text-2xl font-bold border-b-2 border-crunchy">{ title }</h1>
-                            <div className="flex justify-evenly text-crunchy pt-3 xl:pt-1">
-                                { stars }
-                            </div>
+                            <h1 className="text-white text-center xl:text-left text-lg font-bold border-b-2 border-crunchy">{ title }</h1>
                         </div>
                         <div className="flex justify-evenly items-center space-x-3 px-4 my-2 xl:my-0 ">
                             <div data-tip data-for="btn-1" onClick={ onInfoClick } className="text-white hover:text-indigo-500 transition duration-200 cursor-pointer object-contain h-6 w-6 float-right">
