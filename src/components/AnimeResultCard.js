@@ -72,7 +72,7 @@ function Toggles(props) {
 
 export function AnimeResultCard() {
     return (
-        <div className="flex justify-around my-4 h-32" style={{minHeight: 4 + 'rem', maxWidth: 480 + 'px'}}>
+        <div className="flex justify-around my-12 xl:my-4 h-32 " style={{minHeight: 4 + 'rem', maxWidth: 460 + 'px'}}>
             <img className="object-contain rounded-lg shadow-embed h-32" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
             <div className="mt-2 px-4">
                 <div className="flex justify-between items-center space-x-4 pr-4">
@@ -93,7 +93,7 @@ export function AnimeResultCard() {
 
 export function MangaResultCard() {
     return (
-        <div className="flex justify-around my-4 h-32" style={{minHeight: 4 + 'rem', maxWidth: 480 + 'px'}}>
+        <div className="flex justify-around my-12 xl:my-4 h-32" style={{minHeight: 4 + 'rem', maxWidth: 460 + 'px'}}>
             <img className="object-contain rounded-lg shadow-embed h-32" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
             <div className="mt-2 px-4">
                 <div className="flex justify-between items-center space-x-4 pr-4">
