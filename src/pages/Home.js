@@ -39,7 +39,7 @@ function Home() {
                         Welcome!
                     </h1>
                     <div className="text-lg md:text-2xl text-white text-center xl:text-left py-4">
-                        We hope you enjoy your stay on Crunchy's website, expore what
+                        We hope you enjoy your stay on Crunchy's website, explore what
                         makes her the reason
                         <code className="text-crunchy px-2">{ topGGCount.toLocaleString() }</code>
                         servers user her!
