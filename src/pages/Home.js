@@ -33,10 +33,10 @@ function Home() {
   return (
     <div className="bg-gradient-about flex flex-col items-center px-4 md:px-0">
         <div className="relative w-full min-h-screen">
-            <img className="absolute bottom-0 left-0 w-1/2 origin-bottom transform translate-y-64 z-10 ml-20" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
-            <img className="absolute top-0 right-0 w-1/2  opacity-75 object-contain z-10" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+            <img className="absolute bottom-0 left-0 w-full xl:w-1/2 origin-bottom transform translate-y-10 xl:translate-y-64 z-10 ml-20" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+            <img className="absolute top-0 right-0 w-full xl:w-1/2 transform -translate-y-10 xl:translate-y-0 opacity-75 object-contain z-10" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
             <div className="absolute top-0 flex flex-row justify-around items-center w-full h-full z-20 mx-auto">
-                <div className="flex flex-col w-2/5 mb-24">
+                <div className="flex flex-col w-full xl:w-2/5 mb-24">
                     <h1 className="text-6xl text-center font-bold text-cr-blue">
                         Introducing Crunchy
                     </h1>
@@ -45,7 +45,7 @@ function Home() {
                         best of Anime to your Discord server all in a cute and simple
                         bot powering over <code className="text-crunchy">{topGGCount.toLocaleString()}</code> communities.
                     </p>
-                    <div className="flex justify-evenly items-center mt-8 h-12">
+                    <div className="flex flex-wrap justify-evenly items-center space-x-4 xl:space-x-0 mt-8 h-12">
                         <Link className="text-white text-xl font-bold" to="/explore">
                             <img className="inline-block w-10 h-10 object-contain" src={`${iconArea}/icons/discord-logo-white.svg`} alt=""/>
                             <span className="border-b-2 border-crunchy">Invite</span>
@@ -61,7 +61,7 @@ function Home() {
                         </Link>
                     </div>
                 </div>
-                <img className="w-1/5 object-contain transform translate-y-24" src={`${iconArea}/emojis/hime-winner.png`} alt=""/>
+                <img className="hidden xl:block w-1/5 object-contain transform translate-y-24" src={`${iconArea}/emojis/hime-winner.png`} alt=""/>
             </div>
         </div>
          <div id="ex1" className="flex justify-around flex-col md:flex-row pt-8 lg:pt-4 z-20">
@@ -87,7 +87,7 @@ function Home() {
             </div>
         </div>
         <div className="relative flex justify-around flex-col md:flex-row-reverse pt-8 lg:pt-4 z-20">
-            <img className="absolute top-0 right-0 w-1/2  opacity-75 object-contain z-0" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+            <img className="absolute top-0 right-0 w-full xl:w-1/2 opacity-75 object-contain z-0" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
             <Example2/>
             <div className="w-full md:w-2/5 flex items-center justify-center loader-slide-from-left-1/2 pt-8 xl:pt-0 z-20">
                 <div>

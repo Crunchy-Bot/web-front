@@ -5,9 +5,9 @@ const iconArea = process.env.PUBLIC_URL;
 
 function Footer() {
     return (
-        <div className="relative w-full py-4">
-            <img className="absolute right-0 bottom-0 w-1/2 object-contain z-0" src={`${iconArea}/banners/lights.png`} alt=""/>
-            <div className="flex w-1/2 z-20 space-x-8 px-8">
+        <div className="relative w-full pb-4 pt-16">
+            <img className="absolute right-0 bottom-0 full xl:w-1/2 object-contain z-0" src={`${iconArea}/banners/lights.png`} alt=""/>
+            <div className="flex flex-wrap w-full xl:w-1/2 z-20 space-x-8 space-y-4 xl:space-y-0 xl:px-8">
                 <div style={{maxWidth: 20 + 'rem'}}>
                     <h1 className="text-cr-blue font-semibold">Crunchy Bot</h1>
                     <p className="text-gray-100 text-sm font-semibold">
