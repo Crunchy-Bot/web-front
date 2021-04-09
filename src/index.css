@@ -32,6 +32,10 @@ code {
   background: linear-gradient(#000, #213944)
 }
 
+.bg-gradient-about-quick-dark {
+  background: linear-gradient(#000, #0E191E);
+}
+
 .bg-slate-gray-dark {
   background: #213944;
 }
