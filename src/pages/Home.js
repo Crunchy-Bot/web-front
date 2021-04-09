@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-// import {Link as ScrollLink} from 'react-scroll'
+import {Link as ScrollLink} from 'react-scroll'
 
 import { Example1, Example2 } from "../components/Examples";
 import Footer from "../components/Footer";
@@ -46,17 +46,17 @@ function Home() {
                         bot powering over <code className="text-crunchy">{topGGCount.toLocaleString()}</code> communities.
                     </p>
                     <div className="flex flex-wrap justify-evenly items-center space-x-4 xl:space-x-0 mt-8 h-12">
-                        <Link className="text-white text-xl font-bold" to="/explore">
+                        <Link className="text-white text-xl font-bold" to="/invite">
                             <img className="inline-block w-10 h-10 object-contain" src={`${iconArea}/icons/discord-logo-white.svg`} alt=""/>
                             <span className="border-b-2 border-crunchy">Invite</span>
                         </Link>
-                        <Link className="text-white text-xl font-bold h-9" to="/explore">
+                        <Link className="text-white text-xl font-bold h-9" to="/support">
                             Support Server
                         </Link>
-                        <Link className="text-white text-xl font-bold h-9" to="/explore">
+                        <ScrollLink smooth={true} className="cursor-pointer text-white text-xl font-bold h-9" to="ex1">
                             Explore
-                        </Link>
-                        <Link className="text-white text-xl font-bold h-9" to="/explore">
+                        </ScrollLink>
+                        <Link className="text-white text-xl font-bold h-9" to="/commands">
                             Commands
                         </Link>
                     </div>
