@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from "styled-components";
 
 const iconArea = process.env.PUBLIC_URL;
 
@@ -35,12 +34,12 @@ function Example1() {
                             <div className="flex flex-col">
                                 <div className="flex items-center">
                                     <img alt="" className="h-8 w-8 mt-1"
-                                         src="https://cdn.discordapp.com/emojis/742857781232795741.png?v=1"/>
+                                         src={`${iconArea}/webtoon.png`}/>
                                     <h1 className="px-1 xl:px-2 text-blue-400 text-base text-center font-bold xl:font-semibold xl:text-lg">
                                         Tower of God
                                     </h1>
                                     <img alt="" className="h-8 w-8 mt-1"
-                                         src="https://cdn.discordapp.com/emojis/742857781232795741.png?v=1"/>
+                                         src={`${iconArea}/webtoon.png`}/>
                                 </div>
                                 <div className="desc text-white pt-1">
                                     ⭐ <span className="font-bold">Rating</span> 4.5 / 5
@@ -54,7 +53,7 @@ function Example1() {
                             <div>
                                 <img alt=""
                                      className="w-16 h-16 xl:w-28 xl:h-28"
-                                     src="https://cdn.discordapp.com/attachments/680350705038393344/717784215986634953/cheeky.png"/>
+                                     src={`${iconArea}/emojis/cheeky.png`}/>
                             </div>
                         </div>
                         <p className="text-white w-full px-3" style={{ fontSize: 14 + 'px' }}>
@@ -71,7 +70,7 @@ function Example1() {
                                  src={`${iconArea}/banner.png`}/>
                             <div className="flex items-center xl:items-start pt-1">
                                 <img alt="" className="h-6 w-6 rounded-full"
-                                     src="https://cdn.discordapp.com/avatars/290923752475066368/4921a5665c5320be55559d1a026fca68.webp?size=128"/>
+                                     src={`${iconArea}/cf-128.webp`}/>
                                 <h3 className="text-xs font-semibold text-white mt-1 ml-2">
                                     Part of Crunchy, the Crunchyroll Discord
                                     bot. Powered by CF8
@@ -116,7 +115,7 @@ function Example2() {
                         <div className="image flex items-end px-3">
                             <div className="flex pt-1 pb-3">
                                 <img alt="" className="h-6 w-6 rounded-full"
-                                     src="https://cdn.discordapp.com/avatars/290923752475066368/4921a5665c5320be55559d1a026fca68.webp?size=128"/>
+                                     src={`${iconArea}/cf-128.webp`}/>
                                 <h3 className="text-xs font-semibold text-white mt-1 ml-2">
                                     Part of Crunchy, the Crunchyroll Discord
                                     bot. Powered by CF8
