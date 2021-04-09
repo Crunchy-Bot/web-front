@@ -14,7 +14,7 @@ const ExampleBlock2 = styled.div`
 
 function Example1() {
     return (
-        <div className="loader-slide-from-left-1 bg-discord rounded-lg shadow-embed w-full md:w-2/5">
+        <div className="loader-slide-from-left-1 bg-discord rounded-lg shadow-embed w-full md:w-2/5 z-20">
             <div className="grid grid-cols-12 grid-rows-1 gap-0 py-4 px-3">
                 <div className="flex justify-end col-span-2 lg:col-span-1">
                     <img className="rounded-full h-12 w-12" src={ `${iconArea}/cf-512.webp` } alt=""/>
@@ -99,7 +99,7 @@ function Example1() {
 
 function Example2() {
     return (
-        <div className="loader-slide-from-right-1/2 bg-discord rounded-lg shadow-embed w-full md:w-2/5">
+        <div className="loader-slide-from-right-1/2 bg-discord rounded-lg shadow-embed w-full md:w-2/5 z-20">
             <div className="grid grid-cols-12 grid-rows-1 gap-0 py-4 px-2">
                 <div className="flex justify-end col-span-2 lg:col-span-1">
                     <img className="rounded-full h-12 w-12" src={ `${iconArea}/crunchy-512.webp` } alt=""/>

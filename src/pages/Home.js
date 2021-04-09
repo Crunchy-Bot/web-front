@@ -1,9 +1,10 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Link as ScrollLink} from 'react-scroll'
+// import {Link as ScrollLink} from 'react-scroll'
 
 import { Example1, Example2 } from "../components/Examples";
-import { discordInvite, discordSupport } from "../auth";
+import Footer from "../components/Footer";
+// import { discordInvite, discordSupport } from "../auth";
 
 const iconArea = process.env.PUBLIC_URL;
 
@@ -30,44 +31,40 @@ fetchCount()
 
 function Home() {
   return (
-    <div className="flex flex-col items-center px-4 md:px-0">
-        <div className="loader-slide-from-above-1 flex justify-center flex-col md:flex-row-reverse bg-discord rounded-xl shadow-embed py-4 mb-16 w-full xl:w-2/3">
-            <img className="hidden xl:block" style={{height: 24 + 'rem'}} src={ `${iconArea}/emojis/hime-winner.png` } alt=""/>
-            <div className="w-full xl:w-2/3 flex items-center pt-8 xl:pt-0 xl:pr-16">
-                <div className="px-2 xl:px-0">
-                    <h1 className="text-2xl md:text-5xl text-white text-center xl:text-left font-bold border-b-2 border-crunchy py-0 xl:pb-2">
-                        Welcome!
+    <div className="bg-gradient-about flex flex-col items-center px-4 md:px-0">
+        <div className="relative w-full min-h-screen">
+            <img className="absolute bottom-0 left-0 w-1/2 origin-bottom transform translate-y-64 z-10 ml-20" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+            <img className="absolute top-0 right-0 w-1/2  opacity-75 object-contain z-10" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+            <div className="absolute top-0 flex flex-row justify-around items-center w-full h-full z-20 mx-auto">
+                <div className="flex flex-col w-2/5 mb-24">
+                    <h1 className="text-6xl text-center font-bold text-cr-blue">
+                        Introducing Crunchy
                     </h1>
-                    <div className="text-lg md:text-2xl text-white text-center xl:text-left py-4">
-                        We hope you enjoy your stay on Crunchy's website, explore what
-                        makes her the reason
-                        <code className="text-crunchy px-2">{ topGGCount.toLocaleString() }</code>
-                        servers user her!
-                    </div>
-                    <div className="flex justify-evenly flex-wrap w-full pt-8">
-                        <ScrollLink to="ex1" smooth={ true }
-                                    className="cursor-pointer font-bold border-b-3 border-crunchy hover:border-white text-white text-lg transition duration-200 outline-none focus:outline-none mx-2 xl:mx-0 my-2 xl:my-0 px-2 pb-1">
+                    <p className="text-gray-200 text-center text-2xl mt-4 px-4">
+                        Inspired by Crunchyroll, built for the community bringing the
+                        best of Anime to your Discord server all in a cute and simple
+                        bot powering over <code className="text-crunchy">{topGGCount.toLocaleString()}</code> communities.
+                    </p>
+                    <div className="flex justify-evenly items-center mt-8 h-12">
+                        <Link className="text-white text-xl font-bold" to="/explore">
+                            <img className="inline-block w-10 h-10 object-contain" src={`${iconArea}/icons/discord-logo-white.svg`} alt=""/>
+                            <span className="border-b-2 border-crunchy">Invite</span>
+                        </Link>
+                        <Link className="text-white text-xl font-bold h-9" to="/explore">
+                            Support Server
+                        </Link>
+                        <Link className="text-white text-xl font-bold h-9" to="/explore">
                             Explore
-                        </ScrollLink>
-                        <Link to="/commands"
-                              className="cursor-pointer font-bold border-b-3 border-crunchy hover:border-white text-white text-lg transition duration-200 outline-none focus:outline-none mx-2 xl:mx-0 my-2 xl:my-0 px-2 pb-1">
+                        </Link>
+                        <Link className="text-white text-xl font-bold h-9" to="/explore">
                             Commands
                         </Link>
-                        <Link to="/commands"
-                              className="cursor-pointer font-bold border-b-3 border-crunchy hover:border-white text-white text-lg transition duration-200 outline-none focus:outline-none mx-2 xl:mx-0 my-2 xl:my-0 px-2 pb-1">
-                            Faq
-                        </Link>
-                        <a className="cursor-pointer font-bold border-b-3 border-crunchy hover:border-white text-white text-lg transition duration-200 outline-none focus:outline-none mx-2 xl:mx-0 my-2 xl:my-0 px-2 pb-1" href={ discordSupport }>
-                            Support
-                        </a>
-                        <a className="cursor-pointer font-bold border-b-3 border-crunchy hover:border-white text-white text-lg transition duration-200 outline-none focus:outline-none mx-2 xl:mx-0 my-2 xl:my-0 px-2 pb-1" href={ discordInvite }>
-                            Invite
-                        </a>
                     </div>
                 </div>
+                <img className="w-1/5 object-contain transform translate-y-24" src={`${iconArea}/emojis/hime-winner.png`} alt=""/>
             </div>
         </div>
-        <div id="ex1" className="flex justify-around flex-col md:flex-row pt-8 lg:pt-4">
+         <div id="ex1" className="flex justify-around flex-col md:flex-row pt-8 lg:pt-4 z-20">
             <Example1/>
             <div className="w-full md:w-2/5 flex items-center justify-center loader-slide-from-right-1 pt-8 xl:pt-0">
                 <div>
@@ -89,9 +86,10 @@ function Home() {
                 </div>
             </div>
         </div>
-        <div className="flex justify-around flex-col md:flex-row-reverse pt-8 lg:pt-4">
+        <div className="relative flex justify-around flex-col md:flex-row-reverse pt-8 lg:pt-4 z-20">
+            <img className="absolute top-0 right-0 w-1/2  opacity-75 object-contain z-0" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
             <Example2/>
-            <div className="w-full md:w-2/5 flex items-center justify-center loader-slide-from-left-1/2 pt-8 xl:pt-0">
+            <div className="w-full md:w-2/5 flex items-center justify-center loader-slide-from-left-1/2 pt-8 xl:pt-0 z-20">
                 <div>
                     <h1 className="text-2xl md:text-5xl font-bold text-white text-center py-0 md:py-4">
                         Enjoy our legendary<br/>
@@ -102,31 +100,13 @@ function Home() {
                         <span className="text-crunchy font-semibold px-1">release</span>
                         and
                         <span className="text-crunchy font-semibold px-1">news</span>
-                        from Crunchyroll in your community with
-                        Crunchy's webhooks .
+                        from Crunchyroll in your <br/>
+                        community with Crunchy's webhooks .
                     </p>
                 </div>
             </div>
         </div>
-        <div className="flex justify-center flex-col md:flex-row pt-8 lg:pt-4">
-            <img className="loader-slide-from-left-2 object-contain" style={{height: 24 + 'rem'}} src={ `${iconArea}/emojis/hime-happy.png` } alt=""/>
-            <div className="w-full md:w-2/5 flex items-center justify-center loader-slide-from-right-2 pt-8 xl:pt-0">
-                <div>
-                    <h1 className="text-2xl md:text-5xl font-bold text-white text-center py-0 md:py-4">
-                        Leaving us review?
-                    </h1>
-                    <p className="text-lg md:text-2xl text-white text-center py-4">
-                        Check out our
-                        <Link className="text-crunchy font-semibold italic px-2" to="/faq">FAQ</Link>
-                        and
-                        <a className="text-crunchy font-semibold italic px-2" href="https://discord.com/invite/KvvUcKP">Support Server</a>
-                        before leaving a review to see if we haven't already answered
-                        your questions or can fix you problems!
-                        Leaving us a great review? Thank you!
-                    </p>
-                </div>
-            </div>
-        </div>
+        <Footer/>
     </div>
   );
 }

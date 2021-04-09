@@ -17,8 +17,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-  background: url("https://cdn.discordapp.com/attachments/680350705038393344/820970351323381770/bg7.jpg") no-repeat fixed;
 }
 
 code {
@@ -28,6 +26,10 @@ code {
 
 .border-b-3 {
    border-bottom-width: 3px;
+}
+
+.bg-gradient-about {
+  background: linear-gradient(#000, #213944)
 }
 
 .bg-discord {
@@ -46,8 +48,16 @@ code {
   color: var(--discordDark);
 }
 
+.text-cr-blue {
+  color: #2DBDBB
+}
+
 .shadow-embed {
     box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+.shadow-sharp {
+    box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.9);
 }
 
 .border-crunchy {

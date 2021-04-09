@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Squash as Hamburger } from 'hamburger-react'
 
 
-import { isAuthenticated, user, discordInvite, discordSupport } from "../auth";
+import { isAuthenticated, user} from "../auth";
 
 const iconArea = process.env.PUBLIC_URL;
 
@@ -110,16 +110,16 @@ function RenderMobile() {
                             Faq
                         </h1>
                     </Link>
-                    <a className="flex items-center" href={ discordSupport }>
+                    <Link className="flex items-center" to="/support" >
                         <h1 className="text-white hover:text-gray-300 text-lg font-semibold transition duration-200 outline-none focus:outline-none mb-1 px-4">
                             Support
                         </h1>
-                    </a>
-                    <a className="flex items-center" href={ discordInvite }>
+                    </Link>
+                    <Link className="flex items-center" to="/invite">
                         <h1 className="text-white hover:text-gray-300 text-lg font-semibold transition duration-200 outline-none focus:outline-none mb-1 px-1 mx-3 border-b-2 border-crunchy">
                             Invite
                         </h1>
-                    </a>
+                    </Link>
                     <Link to="/me"
                           className="flex items-center px-4 py-2 font-semibold text-white whitespace-no-wrap focus:outline-none hover:underline transition duration-300 ease-in-out">
                         <svg className="w-5 h-5 object-contain" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -181,16 +181,16 @@ function RenderNormal() {
                         Faq
                     </h1>
                 </Link>
-                <a className="flex items-center" href={ discordSupport }>
+                <Link className="flex items-center" to="/support">
                     <h1 className="text-white hover:text-gray-300 text-lg font-semibold transition duration-200 outline-none focus:outline-none mb-1 px-1">
                         Support
                     </h1>
-                </a>
-                <a className="flex items-center" href={ discordInvite }>
+                </Link>
+                <Link className="flex items-center" to="/invite">
                     <h1 className="text-white hover:text-gray-300 text-lg font-semibold transition duration-200 outline-none focus:outline-none mb-1 px-1 border-b-2 border-crunchy">
                         Invite
                     </h1>
-                </a>
+                </Link>
             </div>
             <div className="flex justify-around">
                 { right }
@@ -225,7 +225,7 @@ function Nav() {
     }
 
     return (
-        <nav className="flex justify-between items-center fixed bg-discord border-b-2 border-gray-900 w-full z-50 px-12" style={{minHeight: 4 + 'rem'}}>
+        <nav className="shadow-sharp flex justify-between items-center fixed bg-discord w-full z-50 px-12" style={{minHeight: 4 + 'rem'}}>
             { navContent }
         </nav>
     )

@@ -21,12 +21,18 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
    <Router>
-       <div className="app overflow-x-hidden">
+       <div className="bg-black app overflow-x-hidden">
            <Nav/>
-           <div className="flex justify-center overflow-y-auto pt-24 min-h-screen">
-               <div className="w-full xl:w-11/12">
+           <div className="flex justify-center overflow-y-auto min-h-screen">
+               <div className="w-full">
                    <Switch>
                        <Route exact path="/" component={ () => { return <Redirect to="/home"/> } } />
+                       <Route exact path="/support" component={ () => {
+                           window.location = "https://discord.com/invite/KvvUcKP"
+                       } } />
+                       <Route exact path="/invite" component={ () => {
+                           window.location = "https://discordapp.com/oauth2/authorize?client_id=656598065532239892&scope=bot&permissions=1678109696"
+                       } } />
                        <Route path="/home" component={ Home } />
                        <Route path="/commands" component={ Commands } />
                        <Route path="/faq" component={ Faq } />
