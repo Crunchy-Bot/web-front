@@ -5,7 +5,7 @@ const iconArea = process.env.PUBLIC_URL;
 
 function Footer() {
     return (
-        <div className="relative w-full pb-4">
+        <div className="relative w-full pb-4 px-4">
             <img className="absolute right-0 bottom-0 full xl:w-1/2 object-contain z-0" src={`${iconArea}/banners/lights.png`} alt=""/>
             <div className="flex flex-wrap w-full xl:w-1/2 z-20 space-x-8 space-y-4 xl:space-y-0 xl:px-8 pt-16">
                 <div style={{maxWidth: 20 + 'rem'}}>
