@@ -42,10 +42,10 @@ function CommandItem(props) {
 
     return (
         <div className="px-2 xl:px-16 my-4 xl:my-0">
-            <h1 className="loader-slide-from-right-1 font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
+            <h1 className="font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
                 { title }
             </h1>
-            <div className="loader-slide-from-right-1/2 flex flex-col xl:flex-row justify-around bg-discord-dark shadow-embed rounded-lg p-4 xl:p-8 mt-8">
+            <div className="flex flex-col xl:flex-row justify-around rounded-lg p-4 xl:p-8 mt-8">
                 <div className="w-full xl:w-1/2">
                     <div className="py-2">
                         <div className="flex pb-2">
@@ -105,10 +105,10 @@ function CommandItem(props) {
 function CommandDefaultItem(props) {
     return (
         <div className="px-2 xl:px-16 my-4 xl:my-0">
-            <h1 className="loader-slide-from-right-1 font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
+            <h1 className=" font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
                 Welcome to the Crunchy's command page!
             </h1>
-            <div className="loader-slide-from-right-1/2 flex flex-col xl:flex-row justify-around bg-discord-dark shadow-embed rounded-lg p-4 xl:p-8 mt-8">
+            <div className="flex flex-col xl:flex-row justify-around rounded-lg p-4 xl:p-8 mt-8">
                 <div className="w-full xl:w-1/2">
                     <div className="py-2">
                         <div className="flex pb-2">
@@ -175,10 +175,10 @@ function CommandDefaultItem(props) {
 function CommandNotFound(props) {
     return (
         <div className="px-2 xl:px-16 my-4 xl:my-0">
-            <h1 className="loader-slide-from-right-1 font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
+            <h1 className="font-bold text-white text-3xl italic ml-0 xl:ml-8 mt-8">
                 Oops! That's not a command silly!
             </h1>
-            <div className="loader-slide-from-right-1/2 flex flex-col xl:flex-row justify-around bg-discord-dark shadow-embed rounded-lg p-4 xl:p-8 mt-8">
+            <div className="flex flex-col xl:flex-row justify-around rounded-lg p-4 xl:p-8 mt-8">
                 <div className="w-full xl:w-1/2">
                     <div className="py-2">
                         <div className="flex pb-2">

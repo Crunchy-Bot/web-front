@@ -17,7 +17,7 @@ for (let cat of categories) {
 
         let linker = `?target=${command.toLowerCase().replaceAll(" ", "-")}`;
         renderedCommands.push(
-            <div key={ subCount } className="font-semibold text-white hover:underline transition duration-200 px-2">
+            <div key={ subCount } className="text-white font-semibold hover:underline transition duration-200 px-2">
                 <Link to={ linker }>{ command }</Link>
             </div>
         );
@@ -25,7 +25,9 @@ for (let cat of categories) {
 
     final.push(
         <div key={ count } className="px-2">
-            <h1 className="text-crunchy font-bold text-xl cursor-default">{cat.name}</h1>
+            <div className="flex">
+                <h1 className="text-crunchy font-bold text-lg cursor-default">{cat.name}</h1>
+            </div>
             { renderedCommands }
         </div>
     )
@@ -50,7 +52,7 @@ function Commands() {
     return (
         <div className="commands flex justify-center mt-24">
             <div className="flex flex-col-reverse xl:flex-row justify-center items-center xl:items-start xl:justify-start w-11/12 pb-4">
-                <div className="loader-slide-from-left-1 flex flex-wrap xl:flex-no-wrap flex-row xl:flex-col bg-discord-dark shadow-embed rounded-lg space-y-3 py-3">
+                <div className="flex flex-wrap xl:flex-no-wrap flex-row xl:flex-col space-y-3 py-3 pr-8 border-r-2 border-crunchy">
                     { final }
                 </div>
                 <div className="w-4/5">

@@ -8,6 +8,7 @@
   --discord: #2C2F33;
   --discordDark: #23272A;
   --cardbg: #23272A;
+  --crBlue: #2DBDBB;
 }
 
 body {
@@ -26,6 +27,10 @@ code {
 
 .border-b-3 {
    border-bottom-width: 3px;
+}
+
+.border-cr-blue {
+  border-color: var(--crBlue);
 }
 
 .bg-gradient-about {
@@ -57,7 +62,7 @@ code {
 }
 
 .text-cr-blue {
-  color: #2DBDBB
+  color: var(--crBlue);
 }
 
 .shadow-embed {
