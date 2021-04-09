@@ -5,7 +5,7 @@ const iconArea = process.env.PUBLIC_URL;
 
 function Faq() {
     return (
-        <div className="faq flex justify-center">
+        <div className="faq flex justify-center mt-24">
             <div className="w-5/6">
                 <div className="loader-slide-from-left-1 flex flex-row bg-discord-dark shadow-embed rounded-lg w-full xl:w-4/5 xl:h-32 p-4 my-4 float-left">
                     <img className="hidden xl:block self-center w-24 h-24" src={`${iconArea}/emojis/hime-confuse.png`} alt=""/>

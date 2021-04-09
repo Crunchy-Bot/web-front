@@ -32,6 +32,10 @@ code {
   background: linear-gradient(#000, #213944)
 }
 
+.bg-slate-gray-dark {
+  background: #213944;
+}
+
 .bg-discord {
   background: var(--discord);
 }

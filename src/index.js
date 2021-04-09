@@ -21,7 +21,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
    <Router>
-       <div className="bg-black app overflow-x-hidden">
+       <div className="bg-discord-dark app overflow-x-hidden">
            <Nav/>
            <div className="flex justify-center overflow-y-auto min-h-screen">
                <div className="w-full">

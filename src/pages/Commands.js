@@ -48,7 +48,7 @@ function Commands() {
     }
 
     return (
-        <div className="commands flex justify-center">
+        <div className="commands flex justify-center mt-24">
             <div className="flex flex-col-reverse xl:flex-row justify-center items-center xl:items-start xl:justify-start w-11/12 pb-4">
                 <div className="loader-slide-from-left-1 flex flex-wrap xl:flex-no-wrap flex-row xl:flex-col bg-discord-dark shadow-embed rounded-lg space-y-3 py-3">
                     { final }
