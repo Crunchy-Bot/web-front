@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ReactTooltip from "react-tooltip";
 
+import {parseTagBitflags} from "../utils/BitFlags";
+
 const iconArea = process.env.PUBLIC_URL;
 
 let counter = 0;
@@ -8,7 +10,7 @@ let counter = 0;
 function Toggles(props) {
     counter++
 
-    const isAnime = props.isAnime;
+    const link = props.url;
     const favourite = props.favourite;
     const watchlist = props.watchlist;
 
@@ -16,7 +18,7 @@ function Toggles(props) {
     let [isWatchlist, toggleWatchlist] = useState(watchlist);
 
     const onInfoClick = () => {
-        document.location.href = "url";
+        document.location.href = link;
     }
 
     const onFavouriteClick = () => {
@@ -35,7 +37,7 @@ function Toggles(props) {
                 </svg>
             </div>
             <ReactTooltip id={`${counter}-btn-1`}>
-                <span>{ isAnime ? "Watch on Crunchyroll" : "View on MAL" }</span>
+                <span>Take me there</span>
             </ReactTooltip>
             <div data-tip data-for={`${counter}-btn-2`} onClick={ onWatchlistClick } className="text-white hover:text-crunchy transition duration-200 cursor-pointer object-contain h-6 w-6 float-right">
                 { isWatchlist ? (
@@ -70,46 +72,72 @@ function Toggles(props) {
     )
 }
 
-export function AnimeResultCard() {
+
+export default function ResultCard(props) {
+    const [isHovered, setHover] = useState(false);
+    const [showContent, setContent] = useState(false);
+    const [hideSiblings, setSiblings] = useState(false);
+
+    let link = props.url;
+    let data = props.data;
+    let imgUrl = data.image;
+    let title = data.title;
+    let desc = data.description;
+    let isFavourite = data.isFavourite;
+    let isWatchlist = data.isBookmarked;
+    // let isRecommended = data.isRecommended;
+    let tags = parseTagBitflags(data.tags).join(", ");
+
+    let imgStyle;
+    let blockStyle;
+    if (isHovered) {
+        imgStyle = "relative h-full w-full rounded object-cover slow-grow z-20 shadow-small-sharp transform -translate-x-4 -translate-y-4";
+        blockStyle = { width: 32 + 'rem' };
+    } else {
+        imgStyle = "relative h-full w-full rounded object-cover slow-grow z-20 transform translate-x-0 translate-y-0";
+        blockStyle =  { width: 0 + 'rem' };
+    }
+
     return (
-        <div className="flex justify-around my-12 xl:my-6" style={{minHeight: 5 + 'rem', maxWidth: 450 + 'px'}}>
-            <img className="object-contain rounded-lg shadow-embed h-40" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
-            <div className="mt-2 px-4">
-                <div className="flex justify-between items-center space-x-4 pr-4">
-                    <h1 className="text-white text-xl font-bold border-b-2 border-crunchy">Jujisu Kesien</h1>
-                    <div>
-                        <Toggles isAnime={ true } favourite={ true } watchlist={ false } />
-                    </div>
+        <div className={hideSiblings ? "hide-next-siblings" : ""}>
+            <div className="relative rounded w-40" onMouseEnter={ () => {
+                setSiblings(true);
+                setHover(true);
+                setTimeout(() => setContent(true), 400);
+            }} onMouseLeave={ () => {
+                setTimeout(() => setSiblings(false), 200);
+                setHover(false);
+                setContent(false)
+            } } style={{height: 15 + 'rem'}}>
+                <img className={imgStyle} src={ imgUrl } alt=""/>
+                <div className="absolute bg-discord-dark shadow-small-sharp top-0 left-0 h-full z-10 slow-grow rounded pl-40" style={blockStyle}>
+                    { (showContent && isHovered) ? (
+                        <div className="flex flex-col w-full h-full pt-2 pb-4">
+                            <div className="flex flex-grow flex-wrap justify-between w-full py-2 h-16">
+                                <h1 className="text-white font-bold text-lg border-b-2 border-crunchy">{title}</h1>
+                                <div>
+                                    <Toggles url={ link } favourite={ isFavourite } watchlist={ isWatchlist } />
+                                </div>
+                            </div>
+                            <div className="flex flex-col justify-between h-full">
+                                <p className="text-white text-sm pr-2">
+                                    { desc }
+                                </p>
+                                <div className="flex">
+                                    <div className="text-sm text-white pt-1">
+                                        <code>
+                                            { tags }
+                                        </code>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    ) : (
+                        <></>
+                    )}
                 </div>
-                <p  className="text-white mt-2">
-                    Itadori Yuuji is a boy with tremendous physical strength, though
-                    he lives a completely ordinary high school life. One day,
-                    to save a classmate...
-                </p>
             </div>
         </div>
     )
 }
-
-export function MangaResultCard() {
-    return (
-        <div className="flex justify-around my-12 xl:my-6" style={{minHeight: 4 + 'rem', maxWidth: 430 + 'px'}}>
-            <img className="object-contain rounded-lg shadow-embed h-40" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
-            <div className="mt-2 px-4">
-                <div className="flex justify-between items-center space-x-4 pr-4">
-                    <h1 className="text-white text-xl font-bold border-b-2 border-crunchy">Jujisu Kesien</h1>
-                    <div>
-                        <Toggles isAnime={ false } favourite={ true } watchlist={ false } />
-                    </div>
-                </div>
-                <p  className="text-white mt-2">
-                    Itadori Yuuji is a boy with tremendous physical strength, though
-                    he lives a completely ordinary high school life. One day,
-                    to save a classmate...
-                </p>
-            </div>
-        </div>
-    )
-}
-
 

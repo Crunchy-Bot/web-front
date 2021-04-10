@@ -1,21 +1,19 @@
-import React, { useState }  from 'react';
+import React, {useEffect, useState} from 'react';
 import ReactTooltip from "react-tooltip";
 
-import { AnimeResultCard ,MangaResultCard } from "../components/AnimeResultCard";
+import ResultCard from "../components/ResultCard";
 import Footer from "../components/Footer";
 
-const iconArea = process.env.PUBLIC_URL;
 
-const _info = {
+const info = {
     title: "BURN THE WITCH",
-    thumb: "https://img1.ak.crunchyroll.com/i/spire3/b1dd08aa691466b66de17f129beec2821601563640_full.jpg",
-    desc: "Historically 72% of all the deaths in London are related to dragons, " +
+    image: "https://img1.ak.crunchyroll.com/i/spire3/3952cc8186b2e2a7ea11f8283ca0c8951617747268_full.jpg",
+    description: "Historically 72% of all the deaths in London are related to dragons, " +
         "fantastical beings invisible to the majority of the people. While unknown",
-    rating: 4,
     url: "https://www.crunchyroll.com/burn-the-witch",
     isBookmarked: true,
     isFavourite: true,
-    pendingCharacters: [],
+    tags: (1 << 0) | (1 << 1),
 };
 
 
@@ -79,26 +77,65 @@ function FilterBlock(props) {
 function Search() {
     const [isAnime, toggleType] = useState(true);
 
-    let items = [];
-    for (let i=0;i < 3; i++) {
-        items.push(
-            <AnimeResultCard/>
-        )
-    }
-
-    let items2 = [];
-    for (let i=0;i < 3; i++) {
-        items2.push(
-            <MangaResultCard/>
-        )
-    }
-
     let svgCss;
     if (isAnime) {
         svgCss = "h-6 w-6 transition duration-300 transform rotate-0"
     } else {
         svgCss = "h-6 w-6 transition duration-300 transform rotate-180"
     }
+
+    const [windowDimension, setWindowDimension] = useState(null);
+
+    useEffect(() => {
+        setWindowDimension(window.innerWidth);
+        }, []);
+
+    useEffect(() => {
+        function handleResize() {
+          setWindowDimension(window.innerWidth);
+        }
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+        }, []);
+
+    const items = [
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+    ];
+    const items2 = [
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+    ];
+    const items3 = [
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+        <ResultCard data={info}/>,
+    ];
+    const itemsPerRow = Math.floor(windowDimension / 320);
+    console.log(itemsPerRow)
+
+    let rendered = [];
+    rendered.push(
+        <div className="flex space-x-8 w-full px-8 py-4">
+            {items}
+        </div>
+    )
+    rendered.push(
+        <div className="flex space-x-8 w-full px-8 py-4">
+            {items2}
+        </div>
+    )
+    rendered.push(
+        <div className="flex space-x-8 w-full px-8 py-4">
+            {items3}
+        </div>
+    )
 
     return (
         <div className="flex flex-col justify-between min-h-full">
@@ -157,8 +194,8 @@ function Search() {
                                 <FilterBlock name="Recommended"/>
                             </div>
                         </div>
-                        <div className="w-full">
-
+                        <div className="flex flex-col w-full">
+                            {rendered}
                         </div>
                     </div>
                 </div>

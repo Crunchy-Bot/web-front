@@ -25,6 +25,17 @@ code {
     monospace;
 }
 
+.slow-grow {
+  transition: width .4s ease-in-out, transform .4s ease-in-out;
+}
+
+.hide-next-siblings + div,
+.hide-next-siblings + div + div {
+  transition: visibility .2s linear, opacity .2s linear;
+  visibility: hidden;
+  opacity: 0;
+}
+
 .border-b-3 {
    border-bottom-width: 3px;
 }
@@ -75,6 +86,10 @@ code {
 
 .shadow-sharp {
     box-shadow: 5px 0px 5px 0px rgba(0, 0, 0, 0.9);
+}
+
+.shadow-small-sharp {
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.75);
 }
 
 .border-crunchy {
