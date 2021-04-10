@@ -23,7 +23,7 @@ ReactDOM.render(
    <Router>
        <div className="bg-gradient-about-quick-dark app overflow-hidden">
            <Nav/>
-           <div className="flex justify-center overflow-y-auto min-h-screen mt-24">
+           <div className="flex justify-center overflow-y-auto min-h-screen pt-24">
                <div className="w-full">
                    <Switch>
                        <Route exact path="/" component={ () => { return <Redirect to="/home"/> } } />

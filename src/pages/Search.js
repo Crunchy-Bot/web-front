@@ -4,6 +4,8 @@ import ReactTooltip from "react-tooltip";
 import { AnimeResultCard ,MangaResultCard } from "../components/AnimeResultCard";
 import Footer from "../components/Footer";
 
+const iconArea = process.env.PUBLIC_URL;
+
 const _info = {
     title: "BURN THE WITCH",
     thumb: "https://img1.ak.crunchyroll.com/i/spire3/b1dd08aa691466b66de17f129beec2821601563640_full.jpg",
@@ -99,9 +101,18 @@ function Search() {
     }
 
     return (
-        <>
+        <div className="flex flex-col justify-between min-h-full">
             <div className="flex justify-center">
                 <div className="flex flex-col px-8 w-11/12" style={{ minHeight: 32 + 'vw'}}>
+                    <div className="flex items-center space-x-3">
+                        <div className="h-10 border-r-2 border-crunchy"/>
+                        <button className="outline-none focus:outline-none text-white h-6 w-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                            </svg>
+                        </button>
+                        <input className="w-1/2 bg-transparent text-white placeholder-gray-300" placeholder="Type something in the search bar to get exploring..."/>
+                    </div>
                     <div className="flex justify-start items-center space-x-4 h-32 w-full">
                         <TagButton start={true} name="All"/>
                         <TagButton start={false} name="Action"/>
@@ -140,7 +151,7 @@ function Search() {
                                 <FilterBlock name="Rating: Low - High"/>
                             </div>
                             <div className="mt-4">
-                                <h2 className="text-gray-500">Show</h2>
+                                <h2 className="text-gray-500">Hide</h2>
                                 <FilterBlock name="Favourites"/>
                                 <FilterBlock name="Watchlist"/>
                                 <FilterBlock name="Recommended"/>
@@ -153,7 +164,7 @@ function Search() {
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     );
 }
 
