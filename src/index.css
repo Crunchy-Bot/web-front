@@ -33,6 +33,10 @@ code {
   border-color: var(--crBlue);
 }
 
+.bg-cr-blue {
+  background: var(--crBlue);
+}
+
 .bg-gradient-about {
   background: linear-gradient(#000, #213944)
 }

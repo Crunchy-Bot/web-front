@@ -9,9 +9,9 @@ function Faq() {
     return (
         <>
             <div className="relative faq flex justify-center">
-                 <img className="absolute top-0 right-0 w-full xl:w-1/2 transform -translate-y-10 xl:translate-y-0 opacity-75 object-contain z-10" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
+                <img className="absolute top-0 right-0 w-full xl:w-1/2 transform -translate-y-10 xl:translate-y-0 opacity-75 object-contain z-10" src={`${iconArea}/banners/fireworks-about.png`} alt=""/>
 
-                <div className="w-3/4 z-20 mt-24">
+                <div className="w-3/4 z-20">
                     <div className="loader-slide-from-left-1 flex flex-row bg-discord-dark shadow-embed rounded-lg w-full xl:w-4/5 xl:h-32 p-4 my-4 float-left">
                         <img className="hidden xl:block self-center w-24 h-24" src={`${iconArea}/emojis/hime-confuse.png`} alt=""/>
                         <div>

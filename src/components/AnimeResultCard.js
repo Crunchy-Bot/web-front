@@ -72,8 +72,8 @@ function Toggles(props) {
 
 export function AnimeResultCard() {
     return (
-        <div className="flex justify-around my-12 xl:my-4 h-32 " style={{minHeight: 4 + 'rem', maxWidth: 460 + 'px'}}>
-            <img className="object-contain rounded-lg shadow-embed h-32" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
+        <div className="flex justify-around my-12 xl:my-6" style={{minHeight: 5 + 'rem', maxWidth: 450 + 'px'}}>
+            <img className="object-contain rounded-lg shadow-embed h-40" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
             <div className="mt-2 px-4">
                 <div className="flex justify-between items-center space-x-4 pr-4">
                     <h1 className="text-white text-xl font-bold border-b-2 border-crunchy">Jujisu Kesien</h1>
@@ -93,8 +93,8 @@ export function AnimeResultCard() {
 
 export function MangaResultCard() {
     return (
-        <div className="flex justify-around my-12 xl:my-4 h-32" style={{minHeight: 4 + 'rem', maxWidth: 460 + 'px'}}>
-            <img className="object-contain rounded-lg shadow-embed h-32" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
+        <div className="flex justify-around my-12 xl:my-6" style={{minHeight: 4 + 'rem', maxWidth: 430 + 'px'}}>
+            <img className="object-contain rounded-lg shadow-embed h-40" src={ `${iconArea}/anime-thumbnails/jjk.jpg` } alt=""/>
             <div className="mt-2 px-4">
                 <div className="flex justify-between items-center space-x-4 pr-4">
                     <h1 className="text-white text-xl font-bold border-b-2 border-crunchy">Jujisu Kesien</h1>

@@ -21,9 +21,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
    <Router>
-       <div className="bg-gradient-about-quick-dark app overflow-x-hidden">
+       <div className="bg-gradient-about-quick-dark app overflow-hidden">
            <Nav/>
-           <div className="flex justify-center overflow-y-auto min-h-screen">
+           <div className="flex justify-center overflow-y-auto min-h-screen mt-24">
                <div className="w-full">
                    <Switch>
                        <Route exact path="/" component={ () => { return <Redirect to="/home"/> } } />

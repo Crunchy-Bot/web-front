@@ -1,7 +1,8 @@
 import React, { useState }  from 'react';
+import ReactTooltip from "react-tooltip";
 
 import { AnimeResultCard ,MangaResultCard } from "../components/AnimeResultCard";
-
+import Footer from "../components/Footer";
 
 const _info = {
     title: "BURN THE WITCH",
@@ -16,130 +17,143 @@ const _info = {
 };
 
 
-function Option(props) {
-    const cb = props.onClick;
-    const opt = props.opt;
-    const [isSelected, toggleSelect] = useState(false);
+function TagButton(props) {
+    const [isSelected, toggleSelect] = useState(props.start);
+
+    let css;
+    if (isSelected) {
+        css = "outline-none focus:outline-none bg-discord border-2 border-crunchy rounded-full text-white px-4 pb-1"
+    } else {
+        css = "outline-none focus:outline-none  bg-discord border-2 border-transparent rounded-full text-white px-4 pb-1"
+    }
+
+    const toggleTag = () => {
+        toggleSelect(!isSelected);
+    }
 
     return (
-        <button onClick={ () => { toggleSelect(!isSelected); cb(!isSelected) } }
-                className="relative flex items-center cursor-pointer bg-white hover:bg-gray-200 text-center text-discord-dark font-semibold outline-none focus:outline-none w-full py-2">
-            { isSelected ? (
-                <div className="absolute visible text-crunchy w-5 h-5 ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-            ) : (
-                <div className="absolute invisible text-crunchy w-5 h-5 ml-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                </div>
-            ) }
-
-            <div className="w-full">
-                { opt }
-            </div>
+        <button className={ css } onClick={toggleTag}>
+            {props.name}
         </button>
     )
 }
 
 
-function Dropdown() {
-    const [isDropped, toggleDrop] = useState(false);
+function FilterBlock(props) {
+    const [isSelected, toggleSelect] = useState(false);
 
-    let svgName;
-    if (isDropped) {
-        svgName = "rotate-90"
+    let css;
+    if (isSelected) {
+        css = "flex justify-center items-center outline-none focus:outline-none bg-crunchy rounded h-5 w-5"
     } else {
-        svgName = "rotate-0"
+        css = "flex justify-center items-center outline-none focus:outline-none bg-discord rounded h-5 w-5"
     }
 
-    let svg = (
-        <svg className={`text-white w-6 h-6 transform ${svgName} transition duration-150`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-          <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-        </svg>
-    )
-
-    let renderedOptions = [];
-    const options = [
-        'bob',
-        'action',
-    ];
-    for (let opt of options) {
-        renderedOptions.push(
-            <Option opt={ opt } onClick={ () => { console.log("wew") } }/>
-        )
+    const toggleFilter = () => {
+        toggleSelect(!isSelected);
     }
 
     return (
-        <div className="relative flex justify-center w-48 mx-8">
-            <button onClick={ () => toggleDrop(!isDropped) } className="flex items-center cursor-pointer outline-none focus:outline-none">
-                <h1 className="text-white text-lg font-bold">
-                    Select Genre
-                </h1>
-                { svg }
+        <div className="flex items-center py-1">
+            <button className={ css } onClick={toggleFilter}>
+                {
+                    isSelected ? (
+                        <svg className="text-white h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                    ) : (
+                        <></>
+                    )
+                }
             </button>
-            { isDropped ? (
-                <div className="absolute overflow-y-auto bg-white shadow-embed rounded-lg mt-8 w-48 p-2" style={{height: 24 + 'rem'}}>
-                    { renderedOptions }
-                </div>
-            ) : (
-                <div className="absolute overflow-y-auto bg-white shadow-embed rounded-lg mt-8 w-48 p-2 hidden" style={{height: 24 + 'rem'}}>
-                    { renderedOptions }
-                </div>
-            )}
+            <h1 className="text-gray-400 pl-2">
+                {props.name}
+            </h1>
         </div>
     )
 }
 
 
 function Search() {
+    const [isAnime, toggleType] = useState(true);
+
     let items = [];
-    for (let i=0;i < 6; i++) {
+    for (let i=0;i < 3; i++) {
         items.push(
             <AnimeResultCard/>
         )
     }
 
     let items2 = [];
-    for (let i=0;i < 6; i++) {
+    for (let i=0;i < 3; i++) {
         items2.push(
             <MangaResultCard/>
         )
     }
 
+    let svgCss;
+    if (isAnime) {
+        svgCss = "h-6 w-6 transition duration-300 transform rotate-0"
+    } else {
+        svgCss = "h-6 w-6 transition duration-300 transform rotate-180"
+    }
+
     return (
-        <div className="flex justify-center">
-            <div className="faq flex flex-col bg-discord-dark rounded-lg shadow-embed px-8 w-full" style={{ minHeight: 28 + 'vw', maxWidth: '90%' }}>
-                <div className="flex flex-col xl:flex-row items-center my-4 xl:ml-4">
-                    <div className="flex items-center border-b-2 border-white w-full xl:w-1/3 px-2 xl:pr-4 py-2 my-4 xl:my-0">
-                        <svg className="cursor-pointer text-white w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                        <input className="outline-none focus:outline-none bg-transparent text-white placeholder-gray-200 w-full px-2" placeholder="Search for your next favourite anime and manga..."/>
+        <>
+            <div className="flex justify-center">
+                <div className="flex flex-col px-8 w-11/12" style={{ minHeight: 32 + 'vw'}}>
+                    <div className="flex justify-start items-center space-x-4 h-32 w-full">
+                        <TagButton start={true} name="All"/>
+                        <TagButton start={false} name="Action"/>
+                        <TagButton start={false} name="Drama"/>
+                        <TagButton start={false} name="Comedy"/>
+                        <TagButton start={false} name="Fantasy"/>
+                        <TagButton start={false} name="Yuri"/>
+                        <TagButton start={false} name="Shounen"/>
+                        <TagButton start={false} name="Harem"/>
+                        <TagButton start={false} name="Yaoi"/>
+                        <TagButton start={false} name="Romance"/>
+                        <TagButton start={false} name="Music"/>
+                        <TagButton start={false} name="Tournaments"/>
                     </div>
-                    <Dropdown/>
-                </div>
-                <div className="mt-8 mb-4 xl:mt-4 xl:mb-4">
-                    <div className="flex justify-center xl:justify-start px-4">
-                        <h1 className="text-white text-2xl font-bold border-b-2 border-crunchy">Anime Results</h1>
-                    </div>
-                    <div className="flex flex-wrap justify-center">
-                        { items }
-                    </div>
-                </div>
-                <div className="mt-8 mb-4 xl:mt-4 xl:mb-4">
-                    <div className="flex justify-center xl:justify-start px-4">
-                        <h1 className="text-white text-2xl font-bold border-b-2 border-crunchy">Manga Results</h1>
-                    </div>
-                    <div className="flex flex-wrap justify-center">
-                        { items2 }
+                    <div className="flex h-full">
+                        <div className="flex flex-col w-64 h-full">
+                            <div className="flex items-center">
+                                <ReactTooltip id="toggle-type-btn-1">
+                                    <span>Switch to { isAnime ? "Manga" : "Anime" }</span>
+                                </ReactTooltip>
+                                <button data-tip data-for="toggle-type-btn-1" onClick={ () => toggleType(!isAnime) } className="text-white hover:text-crunchy cursor-pointer outline-none focus:outline-none mr-2">
+                                    <svg className={ svgCss } xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                                    </svg>
+                                </button>
+                                <h1 className="text-white font-bold text-2xl mb-1">
+                                    Search { isAnime ? "Anime" : "Manga" }
+                                </h1>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-gray-500">Sort by</h2>
+                                <FilterBlock name="Trending"/>
+                                <FilterBlock name="Recommended"/>
+                                <FilterBlock name="Popular"/>
+                                <FilterBlock name="Rating: High - Low"/>
+                                <FilterBlock name="Rating: Low - High"/>
+                            </div>
+                            <div className="mt-4">
+                                <h2 className="text-gray-500">Show</h2>
+                                <FilterBlock name="Favourites"/>
+                                <FilterBlock name="Watchlist"/>
+                                <FilterBlock name="Recommended"/>
+                            </div>
+                        </div>
+                        <div className="w-full">
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <Footer/>
+        </>
     );
 }
 
