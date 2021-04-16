@@ -115,14 +115,11 @@ function Search() {
         axios({
             url: searchUrl,
             method: "post",
-            body:{
+            json:{
                 "query": "*",
                 "type": "anime",
                 "limit": 4,
             },
-            headers: {
-                'Content-Type': 'application/json'
-            }
         }).then((resp) => setResults(resp.data.results))
             .catch(() => {})
     }, [query, isAnime, itemsPerRow]);
