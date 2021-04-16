@@ -1,4 +1,5 @@
 import axios from "axios";
+import cookie from 'react-cookies'
 
 export let user = {
     isAuthed: false,
@@ -14,7 +15,19 @@ export async function checkAuth() {
     }
 
     try {
-        let resp = await axios.get(whoAmI);
+        let maybeSession = cookie.load("session");
+        let resp = await axios.get(
+            whoAmI,
+        {
+            headers: {
+                "X-Session": maybeSession
+            }
+        });
+        let sessionId = resp.headers["X-Session"]
+        if (sessionId !== null) {
+            cookie.save("session", sessionId);
+        }
+
         user = resp.data;
         return user
     } catch {
