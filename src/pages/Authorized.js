@@ -15,9 +15,7 @@ function Authorized() {
     useEffect(() => {
         const temp = async () => {
             try {
-                let resp = await axios.post(`${sendAuth}?code=${maybeCode}`);
-                let sessionId = resp.headers['X-Session-ID'];
-                document.cookie = `session=${sessionId}; Path=/; SameSite=lax`;
+                await axios.post(`${sendAuth}?code=${maybeCode}`);
             } catch {
                 setDone(true)
                 return

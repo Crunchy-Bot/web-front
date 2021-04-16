@@ -15,8 +15,6 @@ export async function checkAuth() {
 
     try {
         let resp = await axios.get(whoAmI);
-        let sessionId = resp.headers['X-Session-ID'];
-        document.cookie = `session=${sessionId}; Path=/; SameSite=lax`;
         user = resp.data;
         return user
     } catch {
