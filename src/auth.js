@@ -17,7 +17,7 @@ export async function checkAuth() {
         return
     }
 
-    user = JSON.parse(resp.data);
+    user = resp.data;
     return user
 }
 
