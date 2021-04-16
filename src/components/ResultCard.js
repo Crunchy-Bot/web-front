@@ -3,7 +3,7 @@ import ReactTooltip from "react-tooltip";
 
 import {parseTagBitflags} from "../utils/BitFlags";
 
-const iconArea = process.env.PUBLIC_URL;
+const cdnUrlBase = "https://cdn.crunchy.gg"
 
 let counter = 0;
 
@@ -80,13 +80,17 @@ export default function ResultCard(props) {
 
     let link = props.url;
     let data = props.data;
-    let imgUrl = data.image;
+    let imgUrl = data.thumbnail;
     let title = data.title;
     let desc = data.description;
     let isFavourite = data.isFavourite;
     let isWatchlist = data.isBookmarked;
     // let isRecommended = data.isRecommended;
     let tags = parseTagBitflags(data.tags).join(", ");
+
+    if (title.length > 24) {
+        title = `${title.substring(0, 24)}...`
+    }
 
     let imgStyle;
     let blockStyle;
@@ -109,7 +113,7 @@ export default function ResultCard(props) {
                 setHover(false);
                 setContent(false)
             } } style={{height: 15 + 'rem'}}>
-                <img className={imgStyle} src={ imgUrl } alt=""/>
+                <img className={imgStyle} src={ `${cdnUrlBase}/${imgUrl}` } alt=""/>
                 <div className="absolute bg-discord-dark shadow-small-sharp top-0 left-0 h-full z-10 slow-grow rounded pl-40" style={blockStyle}>
                     { (showContent && isHovered) ? (
                         <div className="flex flex-col w-full h-full pt-2 pb-4">

@@ -8,17 +8,6 @@ import axios from "axios";
 
 const searchUrl = "http://127.0.0.1:9990/v0/search"
 
-const info = {
-    title: "BURN THE WITCH",
-    image: "https://img1.ak.crunchyroll.com/i/spire3/3952cc8186b2e2a7ea11f8283ca0c8951617747268_full.jpg",
-    description: "Historically 72% of all the deaths in London are related to dragons, " +
-        "fantastical beings invisible to the majority of the people. While unknown",
-    url: "https://www.crunchyroll.com/burn-the-witch",
-    isBookmarked: true,
-    isFavourite: true,
-    tags: (1 << 0) | (1 << 1),
-};
-
 
 function TagButton(props) {
     const [isSelected, toggleSelect] = useState(props.start);
@@ -108,26 +97,20 @@ function Search() {
     let itemsPerRow = Math.floor(windowDimension / 320);
 
     if (itemsPerRow === 0) {
-        itemsPerRow = 1
+        itemsPerRow = 2
     }
 
     useEffect(() => {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                let res = JSON.parse(xhttp.responseText);
-                setResults(res.results)
-            }
-        };
-        xhttp.open("POST", searchUrl, true);
-        xhttp.setRequestHeader("Content-Type", "application/json")
-        xhttp.send(JSON.stringify({
-            "query": "*",
+        axios.post(searchUrl, {
+            "query": query,
             "type": "anime",
-            "limit": 4,
-        }));
+            "chunk": itemsPerRow,
+            "limit": 2 * itemsPerRow,
+        }).then((resp) => setResults(resp.data.results))
+            .catch(() => {})
     }, [query, isAnime, itemsPerRow]);
 
+    let count = 0;
     let rendered = [];
     for (let block of results) {
         let temp = [];
@@ -135,20 +118,29 @@ function Search() {
             row.isBookmarked = false;
             row.isFavourite = false;
             temp.push(
-                <ResultCard data={row}/>,
+                <ResultCard key={count++} data={row}/>,
             )
         }
         rendered.push(
-            <div className="flex space-x-8 w-full px-8 py-4">
+            <div key={count++} className="flex space-x-8 w-full px-8 py-4">
                 {temp}
             </div>
         );
     }
 
+    const handleChange = e => {
+        let maybeQuery = e.target.value;
+        if (maybeQuery === "") {
+            setQuery("*")
+        } else {
+            setQuery(maybeQuery)
+        }
+    }
+
     return (
-        <div className="flex flex-col justify-between min-h-full">
+        <div className="flex flex-col justify-between">
             <div className="flex justify-center">
-                <div className="flex flex-col px-8 w-11/12" style={{ minHeight: 32 + 'vw'}}>
+                <div className="flex flex-col px-8 w-11/12" style={{ minHeight: 20 + 'vw'}}>
                     <div className="flex items-center space-x-3">
                         <div className="h-10 border-r-2 border-crunchy"/>
                         <button className="outline-none focus:outline-none text-white h-6 w-6">
@@ -156,7 +148,11 @@ function Search() {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </button>
-                        <input className="w-1/2 bg-transparent text-white placeholder-gray-300" placeholder="Type something in the search bar to get exploring..."/>
+                        <input
+                            type="text"
+                            onChange={handleChange}
+                            className="w-1/2 bg-transparent text-white placeholder-gray-300"
+                            placeholder="Type something in the search bar to get exploring..."/>
                     </div>
                     <div className="flex justify-start items-center space-x-4 h-32 w-full">
                         <TagButton start={true} name="All"/>
