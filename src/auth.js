@@ -1,12 +1,14 @@
 import axios from "axios";
 
-export let user = null;
+export let user = {
+    isAuthed: false,
+};
 
 const whoAmI = "http://localhost:9990/v0/me";
 
 
 export async function checkAuth() {
-    if (user !== null) {
+    if (user.isAuthed) {
         return
     }
 
@@ -21,5 +23,5 @@ export async function checkAuth() {
 
 export const isAuthenticated = () => {
     console.log(user);
-    return false
+    return user.isAuthed
 };
