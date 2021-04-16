@@ -5,7 +5,7 @@ export let user = {
 };
 
 const whoAmI = "http://localhost:9990/v0/me";
-
+export const sendAuth = "http://localhost:9990/v0/authorize";
 
 export async function checkAuth() {
     if (user.isAuthed) {
@@ -20,6 +20,7 @@ export async function checkAuth() {
     user = resp.data;
     return user
 }
+
 
 export const isAuthenticated = () => {
     console.log(user);

@@ -1,11 +1,32 @@
 import React, { useEffect } from "react";
+import {Redirect, useLocation} from "react-router-dom";
 import axios from "axios";
+
+import {checkAuth, sendAuth} from "../auth";
 
 const iconArea = process.env.PUBLIC_URL;
 
 
 function Authorized() {
+    const loc = useLocation();
+    const maybeCode = new URLSearchParams(loc.search).get('code');
 
+    useEffect(() => {
+        const temp = async () => {
+            let res = await axios.post(`${sendAuth}?code=${maybeCode}`);
+            if (res.status !== 200) {
+                return
+            }
+
+            await checkAuth()
+        }
+
+        temp().then(() => {})
+    }, [maybeCode])
+
+    if (maybeCode === null) {
+        return <Redirect from='/authorized' to="/home" />
+    }
 
     return (
         <>
