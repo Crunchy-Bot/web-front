@@ -3,7 +3,6 @@ import {Redirect, useLocation} from "react-router-dom";
 import axios from "axios";
 
 import {checkAuth, sendAuth} from "../auth";
-import cookie from "react-cookies";
 
 const iconArea = process.env.PUBLIC_URL;
 
@@ -15,20 +14,8 @@ function Authorized() {
 
     useEffect(() => {
         const temp = async () => {
-            let maybeSession = cookie.load("session");
             try {
-                let resp = await axios.post(
-                    `${sendAuth}?code=${maybeCode}`,
-                    {
-                        headers: {
-                            "X-Session": maybeSession
-                        }
-                    }
-                );
-                let sessionId = resp.headers["X-Session"]
-                if (sessionId !== null) {
-                    cookie.save("session", sessionId);
-                }
+                await axios.post(`${sendAuth}?code=${maybeCode}`);
             } catch {
                 setDone(true)
                 return
