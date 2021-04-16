@@ -13,13 +13,17 @@ export async function checkAuth() {
         return
     }
 
-    let resp = await axios.get(whoAmI);
-    if (resp.status !== 200) {
+    try {
+        let resp = await axios.get(whoAmI);
+        let sessionId = resp.headers['X-Session-ID'];
+        document.cookie = `session=${sessionId}; Path=/; SameSite=lax`;
+        user = resp.data;
+        return user
+    } catch {
         return
     }
 
-    user = resp.data;
-    return user
+
 }
 
 
