@@ -13,19 +13,17 @@ export async function checkAuth() {
         return
     }
 
+
     try {
         let resp = await axios.get(whoAmI);
         user = resp.data;
         return user
     } catch {
-        return
+
     }
-
-
 }
 
 
 export const isAuthenticated = () => {
-    console.log(user);
     return user.isAuthed
 };

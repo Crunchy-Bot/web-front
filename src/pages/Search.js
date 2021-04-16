@@ -3,7 +3,10 @@ import ReactTooltip from "react-tooltip";
 
 import ResultCard from "../components/ResultCard";
 import Footer from "../components/Footer";
+import axios from "axios";
 
+
+const searchUrl = "http://127.0.0.1:9990/v0/search"
 
 const info = {
     title: "BURN THE WITCH",
@@ -76,6 +79,9 @@ function FilterBlock(props) {
 
 function Search() {
     const [isAnime, toggleType] = useState(true);
+    const [windowDimension, setWindowDimension] = useState(null);
+    const [query, setQuery] = useState("*");
+    const [results, setResults] = useState([]);
 
     let svgCss;
     if (isAnime) {
@@ -84,7 +90,6 @@ function Search() {
         svgCss = "h-6 w-6 transition duration-300 transform rotate-180"
     }
 
-    const [windowDimension, setWindowDimension] = useState(null);
 
     useEffect(() => {
         setWindowDimension(window.innerWidth);
@@ -99,43 +104,38 @@ function Search() {
         return () => window.removeEventListener("resize", handleResize);
         }, []);
 
-    const items = [
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-    ];
-    const items2 = [
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-    ];
-    const items3 = [
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-        <ResultCard data={info}/>,
-    ];
+
     const itemsPerRow = Math.floor(windowDimension / 320);
-    console.log(itemsPerRow)
+
+    useEffect(() => {
+        axios.post(
+            searchUrl,
+            {
+                query: query,
+                type: isAnime ? "anime" : "manga",
+                chunk: itemsPerRow,
+                limit: 4 * itemsPerRow,
+            })
+            .then((resp) => setResults(resp.data.results))
+            .catch(() => {})
+    }, [query, isAnime, itemsPerRow]);
 
     let rendered = [];
-    rendered.push(
-        <div className="flex space-x-8 w-full px-8 py-4">
-            {items}
-        </div>
-    )
-    rendered.push(
-        <div className="flex space-x-8 w-full px-8 py-4">
-            {items2}
-        </div>
-    )
-    rendered.push(
-        <div className="flex space-x-8 w-full px-8 py-4">
-            {items3}
-        </div>
-    )
+    for (let block of results) {
+        let temp = [];
+        for (let row of block) {
+            row.isBookmarked = false;
+            row.isFavourite = false;
+            temp.push(
+                <ResultCard data={row}/>,
+            )
+        }
+        rendered.push(
+            <div className="flex space-x-8 w-full px-8 py-4">
+                {temp}
+            </div>
+        );
+    }
 
     return (
         <div className="flex flex-col justify-between min-h-full">
