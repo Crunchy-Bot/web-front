@@ -112,16 +112,20 @@ function Search() {
     }
 
     useEffect(() => {
-        axios({
-            url: searchUrl,
-            method: "post",
-            json:{
-                "query": "*",
-                "type": "anime",
-                "limit": 4,
-            },
-        }).then((resp) => setResults(resp.data.results))
-            .catch(() => {})
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200) {
+                let res = JSON.parse(xhttp.responseText);
+                setResults(res.results)
+            }
+        };
+        xhttp.open("POST", searchUrl, true);
+        xhttp.setRequestHeader("Content-Type", "application/json")
+        xhttp.send(JSON.stringify({
+            "query": "*",
+            "type": "anime",
+            "limit": 4,
+        }));
     }, [query, isAnime, itemsPerRow]);
 
     let rendered = [];
