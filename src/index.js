@@ -16,6 +16,7 @@ import Commands from './pages/Commands';
 import Faq from './pages/Faq';
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
+import Authorized from "./pages/Authorized";
 
 import reportWebVitals from './reportWebVitals';
 
@@ -23,7 +24,7 @@ ReactDOM.render(
    <Router>
        <div className="bg-gradient-about-quick-dark app overflow-hidden">
            <Nav/>
-           <div className="flex justify-center overflow-y-auto min-h-screen pt-24">
+           <div className="flex justify-center min-h-screen pt-24">
                <div className="w-full">
                    <Switch>
                        <Route exact path="/" component={ () => { return <Redirect to="/home"/> } } />
@@ -37,6 +38,7 @@ ReactDOM.render(
                        <Route path="/commands" component={ Commands } />
                        <Route path="/faq" component={ Faq } />
                        <Route path="/search" component={ Search } />
+                       <Route path="/authorized" component={ Authorized } />
                        <Route component={ NotFound } />
                    </Switch>
                </div>
