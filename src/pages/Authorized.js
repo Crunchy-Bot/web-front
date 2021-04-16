@@ -14,8 +14,9 @@ function Authorized() {
 
     useEffect(() => {
         const temp = async () => {
-            let res = await axios.post(`${sendAuth}?code=${maybeCode}`);
-            if (res.status !== 200) {
+            try {
+                await axios.post(`${sendAuth}?code=${maybeCode}`);
+            } catch {
                 setDone(true)
                 return
             }

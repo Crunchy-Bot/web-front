@@ -93,7 +93,7 @@ function RenderMobile() {
             <div className="transition duration-300">
                 <div className={ dropDownHide }>
                     <div className="px-4 py-2 text-sm text-white italic font-semibold">
-                        <code>Hi there, { user !== null ? user.name : "login to view more."}</code>
+                        <code>Hi there, { user.isAuthed ? user.name : "login to view more."}</code>
                     </div>
                     <Link className="flex items-center" to="/home">
                         <h1 className="text-white hover:text-gray-300 text-lg font-semibold transition duration-200 outline-none focus:outline-none mb-1 px-4">
@@ -145,7 +145,12 @@ function RenderMobile() {
                             </Link>
                         </>
                     ) : (
-                        <></>
+                        <Link to="/login" className="flex items-center text-white transition duration-200">
+                            <img className="object-contain w-8 h-8 object-contain mr-1" src={ `${iconArea}/icons/discord-logo-white.svg` } alt=""/>
+                            <h1 className="text-lg font-semibold outline-none focus:outline-none mb-1 px-1">
+                                Login
+                            </h1>
+                        </Link>
                     )}
                 </div>
             </div>
@@ -159,7 +164,7 @@ function RenderNormal() {
         right = <DropDown/>
     } else {
         right = (
-            <Link to="/home" className="flex items-center text-white transition duration-200">
+            <Link to="/login" className="flex items-center text-white transition duration-200">
                 <img className="object-contain w-8 h-8 object-contain mr-1" src={ `${iconArea}/icons/discord-logo-white.svg` } alt=""/>
                 <h1 className="text-lg font-semibold outline-none focus:outline-none mb-1 px-1">
                     Login

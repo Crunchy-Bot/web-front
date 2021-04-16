@@ -19,6 +19,7 @@ import Search from "./pages/Search";
 import Authorized from "./pages/Authorized";
 
 import reportWebVitals from './reportWebVitals';
+import {loginRedirectURI} from "./auth";
 
 ReactDOM.render(
    <Router>
@@ -33,6 +34,9 @@ ReactDOM.render(
                        } } />
                        <Route exact path="/invite" component={ () => {
                            window.location = "https://discordapp.com/oauth2/authorize?client_id=656598065532239892&scope=bot&permissions=1678109696"
+                       } } />
+                       <Route exact path="/login" component={ () => {
+                           window.location = loginRedirectURI
                        } } />
                        <Route path="/home" component={ Home } />
                        <Route path="/commands" component={ Commands } />
