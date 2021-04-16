@@ -105,18 +105,25 @@ function Search() {
         }, []);
 
 
-    const itemsPerRow = Math.floor(windowDimension / 320);
+    let itemsPerRow = Math.floor(windowDimension / 320);
+
+    if (itemsPerRow === 0) {
+        itemsPerRow = 1
+    }
 
     useEffect(() => {
-        axios.post(
-            searchUrl,
-            {
-                query: query,
-                type: isAnime ? "anime" : "manga",
-                chunk: itemsPerRow,
-                limit: 4 * itemsPerRow,
-            })
-            .then((resp) => setResults(resp.data.results))
+        axios({
+            url: searchUrl,
+            method: "post",
+            body:{
+                "query": "*",
+                "type": "anime",
+                "limit": 4,
+            },
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((resp) => setResults(resp.data.results))
             .catch(() => {})
     }, [query, isAnime, itemsPerRow]);
 
