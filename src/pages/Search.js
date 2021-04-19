@@ -104,10 +104,6 @@ function Search() {
         axios.post(searchUrl, {
             "query": query,
             "type": "anime",
-            "fuzzy": true,
-            "fuzzy_fields": [
-              "title",
-            ],
             "chunk": itemsPerRow,
             "limit": 2 * itemsPerRow,
         }).then((resp) => setResults(resp.data.results))
