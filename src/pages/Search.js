@@ -104,6 +104,10 @@ function Search() {
         axios.post(searchUrl, {
             "query": query,
             "type": "anime",
+            "fuzzy": true,
+            "fuzzy_fields": [
+              "title",
+            ],
             "chunk": itemsPerRow,
             "limit": 2 * itemsPerRow,
         }).then((resp) => setResults(resp.data.results))
@@ -140,7 +144,7 @@ function Search() {
     return (
         <div className="flex flex-col justify-between">
             <div className="flex justify-center">
-                <div className="flex flex-col px-8 w-11/12" style={{ minHeight: 20 + 'vw'}}>
+                <div className="flex flex-col px-8 w-11/12 " style={{ minHeight: 20 + 'vw'}}>
                     <div className="flex items-center space-x-3">
                         <div className="h-10 border-r-2 border-crunchy"/>
                         <button className="outline-none focus:outline-none text-white h-6 w-6">

@@ -89,7 +89,7 @@ export default function ResultCard(props) {
     let tags = parseTagBitflags(data.tags).join(", ");
 
     if (title.length > 24) {
-        title = `${title.substring(0, 24)}...`
+        title = `${title.substring(0, 22)}...`
     }
 
     let imgStyle;
@@ -106,7 +106,7 @@ export default function ResultCard(props) {
         <div className={hideSiblings ? "hide-next-siblings" : ""}>
             <div className="relative rounded w-40" onMouseEnter={ () => {
                 setSiblings(true);
-                setHover(true);
+                setTimeout(() => setHover(true), 200);
                 setTimeout(() => setContent(true), 400);
             }} onMouseLeave={ () => {
                 setTimeout(() => setSiblings(false), 200);
