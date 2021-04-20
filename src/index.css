@@ -29,6 +29,14 @@ code {
   transition: width .4s ease-in-out, transform .4s ease-in-out;
 }
 
+.card-small {
+  max-width: 10rem;
+}
+
+.card-big {
+  max-width: 36rem;
+}
+
 .hide-next-siblings + div,
 .hide-next-siblings + div + div {
   transition: visibility .2s linear, opacity .2s linear;
