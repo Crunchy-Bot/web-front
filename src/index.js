@@ -17,7 +17,7 @@ import Faq from './pages/Faq';
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import Authorized from "./pages/Authorized";
-import NewCard from "./pages/NewCard";
+import NewCard from "./components/ResultCard";
 
 import reportWebVitals from './reportWebVitals';
 import {loginRedirectURI} from "./auth";
@@ -44,7 +44,6 @@ ReactDOM.render(
                        <Route path="/faq" component={ Faq } />
                        <Route path="/search" component={ Search } />
                        <Route path="/authorized" component={ Authorized } />
-                       <Route path="/newcard" component={ NewCard } />
                        <Route component={ NotFound } />
                    </Switch>
                </div>

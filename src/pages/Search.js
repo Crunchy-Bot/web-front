@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ReactTooltip from "react-tooltip";
 
-import ResultCard from "../components/ResultCard";
+import Card from "../components/ResultCard";
 import Footer from "../components/Footer";
 import axios from "axios";
 
@@ -70,7 +70,7 @@ function Search() {
     const [isAnime, toggleType] = useState(true);
     const [windowDimension, setWindowDimension] = useState(null);
     const [query, setQuery] = useState("*");
-    const [results, setResults] = useState([]);
+    const [results, setResults] = useState([[null, null, null, null, null], [null, null, null, null, null], [null, null, null, null, null]]);
 
     let svgCss;
     if (isAnime) {
@@ -78,7 +78,6 @@ function Search() {
     } else {
         svgCss = "h-6 w-6 transition duration-300 transform rotate-180"
     }
-
 
     useEffect(() => {
         setWindowDimension(window.innerWidth);
@@ -100,6 +99,8 @@ function Search() {
         itemsPerRow = 2
     }
 
+    console.log(itemsPerRow)
+
     useEffect(() => {
         axios.post(searchUrl, {
             "query": query,
@@ -115,10 +116,10 @@ function Search() {
     for (let block of results) {
         let temp = [];
         for (let row of block) {
-            row.isBookmarked = false;
-            row.isFavourite = false;
+            //row.isBookmarked = false;
+            //row.isFavourite = false;
             temp.push(
-                <ResultCard key={count++} data={row}/>,
+                <Card key={count++} active={false}/>
             )
         }
         rendered.push(
@@ -140,7 +141,7 @@ function Search() {
     return (
         <div className="flex flex-col justify-between">
             <div className="flex justify-center">
-                <div className="flex flex-col px-8 w-11/12 " style={{ minHeight: 20 + 'vw'}}>
+                <div className="flex flex-col pl-16 w-full" style={{ minHeight: 20 + 'vw'}}>
                     <div className="flex items-center space-x-3">
                         <div className="h-10 border-r-2 border-crunchy"/>
                         <button className="outline-none focus:outline-none text-white h-6 w-6">
