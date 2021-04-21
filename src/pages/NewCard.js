@@ -1,5 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactTooltip from "react-tooltip";
+
+
+const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
 
 
 let counter = 0;
@@ -72,45 +77,78 @@ function Toggles(props) {
 
 function Card(props) {
     const [isHover, setHover] = useState(props.active);
+    const [shouldShow, setShow] = useState(props.active);
+
+    const adapt = () => {
+        sleep(400)
+            .then(() => {
+                if (isHover) {
+                    setShow(true);
+                } else {
+                    setShow(false);
+                }
+            })
+    }
 
     let cardSize;
     let imgTrans;
-    let textBlock;
     if (!isHover) {
         cardSize = "card-small";
         imgTrans = "translate-x-0 translate-y-0";
-        textBlock = "hidden";
     } else {
         cardSize = "card-big";
         imgTrans = "-translate-x-4 -translate-y-4";
-        textBlock = "block"
     }
+
+    let textBlock;
+    if (shouldShow) {
+        textBlock = "block";
+    } else {
+        textBlock = "hidden";
+    }
+
+
+    const title = "Bureau of Proto Society";
+    const description = "In the far distant future… Humans are living in the " +
+        "underground shelters under the complete controlled " +
+        "situation.\"Why has the world gone to ruin, and what " +
+        "have made humans stay in the shelters?\" " +
+        "Every day the members of BUREAU OF PROT SOCIETY " +
+        "debate the cause of the fall of the world from the " +
+        "past documentary videos... probably.";
+    const tags = "action, comedy, sci_fi";
 
     return (
       <div
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          className={`flex bg-discord-dark shadow-small-sharp rounded-lg ${cardSize} slow-grow h-64`}
+          onMouseOver={() => {
+              setHover(true);
+              adapt();
+          }}
+          onMouseLeave={() => {
+              setHover(false);
+              setShow(false);
+          }}
+          className={`flex bg-discord-dark shadow-small-sharp rounded-lg ${cardSize} slow-grow h-64 my-4`}
       >
-          <img className={`w-40 h-64 rounded-lg shadow-small-sharp transition duration-200 transform ${imgTrans}`} src="https://cdn.crunchy.gg/thumbnails/anime/I0EmQCxSYChoZWE.jpg" alt=""/>
-          <div className={`${textBlock} w-full py-2`}>
+          <img
+              className={`w-40 h-64 rounded-lg shadow-small-sharp transition duration-200 transform ${imgTrans}`}
+              src="https://cdn.crunchy.gg/thumbnails/anime/I0EmQCxSYChoZWE.jpg"
+              alt=""
+          />
+          <div className={`${textBlock} flex flex-col justify-between h-full w-full py-2`}>
               <div className="flex justify-between w-full">
-                <h1 className="font-bold text-white text-lg border-b-2 border-crunchy">Bureau of Proto Society</h1>
+                <h1 className="font-bold text-white text-lg border-b-2 border-crunchy">
+                    { title }
+                </h1>
                 <Toggles/>
               </div>
               <div className="flex flex-col justify-between h-full pr-4">
                   <p className="py-2 text-white">
-                      In the far distant future… Humans are living in the
-                      underground shelters under the complete controlled
-                      situation."Why has the world gone to ruin, and what
-                      have made humans stay in the shelters?"
-                      Every day the members of BUREAU OF PROT SOCIETY
-                      debate the cause of the fall of the world from the
-                      past documentary videos... probably.
+                      { description }
                   </p>
-                  <div className="text-gray-300">
-                    <code>action, comedy, sci_fi</code>
-                  </div>
+              </div>
+              <div className="text-gray-300">
+                <code>{ tags }</code>
               </div>
           </div>
       </div>
@@ -120,9 +158,17 @@ function Card(props) {
 
 function NewCard() {
     return (
-        <div className="flex flex-col space-y-40 px-16">
+        <div className="flex flex-wrap justify-evenly space-x-8 px-16">
             <Card active={false}/>
-            <Card active={true}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
+            <Card active={false}/>
         </div>
     )
 }

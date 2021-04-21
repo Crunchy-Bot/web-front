@@ -26,14 +26,16 @@ code {
 }
 
 .slow-grow {
-  transition: width .4s ease-in-out, transform .4s ease-in-out;
+  transition: all .4s linear;
 }
 
 .card-small {
+  width: 10rem;
   max-width: 10rem;
 }
 
 .card-big {
+  width: 36rem;
   max-width: 36rem;
 }
 
