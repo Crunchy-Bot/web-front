@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import ReactTooltip from "react-tooltip";
+import axios from "axios";
 
 import Card from "../components/ResultCard";
 import Footer from "../components/Footer";
-import axios from "axios";
+import {flags, tags} from "../utils/BitFlags";
 
 
 const searchUrl = "http://127.0.0.1:9990/v0/search"
 
 
 function TagButton(props) {
-    const [isSelected, toggleSelect] = useState(props.start);
+    const isSelected = props.start;
 
     let css;
     if (isSelected) {
@@ -19,12 +20,8 @@ function TagButton(props) {
         css = "outline-none focus:outline-none  bg-discord border-2 border-transparent rounded-full text-white px-4 pb-1"
     }
 
-    const toggleTag = () => {
-        toggleSelect(!isSelected);
-    }
-
     return (
-        <button className={ css } onClick={toggleTag}>
+        <button className={ css } onClick={props.onClick}>
             {props.name}
         </button>
     )
@@ -70,7 +67,8 @@ function Search() {
     const [isAnime, toggleType] = useState(true);
     const [windowDimension, setWindowDimension] = useState(null);
     const [query, setQuery] = useState("*");
-    const [results, setResults] = useState([[null, null, null, null, null], [null, null, null, null, null], [null, null, null, null, null]]);
+    const [results, setResults] = useState([]);
+    const [selectTags, setTags] = useState(0);
 
     let svgCss;
     if (isAnime) {
@@ -96,30 +94,29 @@ function Search() {
     let itemsPerRow = Math.floor(windowDimension / 320);
 
     if (itemsPerRow === 0) {
-        itemsPerRow = 2
+        itemsPerRow = 2;
     }
-
-    console.log(itemsPerRow)
 
     useEffect(() => {
         axios.post(searchUrl, {
             "query": query,
-            "type": "anime",
+            "type": isAnime ? "anime" : "manga",
             "chunk": itemsPerRow,
             "limit": 2 * itemsPerRow,
+            "tags": selectTags,
         }).then((resp) => setResults(resp.data.results))
             .catch(() => {})
-    }, [query, isAnime, itemsPerRow]);
+    }, [selectTags, query, isAnime, itemsPerRow]);
 
     let count = 0;
     let rendered = [];
     for (let block of results) {
         let temp = [];
         for (let row of block) {
-            //row.isBookmarked = false;
-            //row.isFavourite = false;
+            row.isBookmarked = false;
+            row.isFavourite = false;
             temp.push(
-                <Card key={count++} active={false}/>
+                <Card key={count++} data={row}/>
             )
         }
         rendered.push(
@@ -135,6 +132,24 @@ function Search() {
             setQuery("*")
         } else {
             setQuery(maybeQuery)
+        }
+    }
+
+    function onTagSelect(flag) {
+        if (flag === 0) {
+            setTags(0);
+            return
+        }
+
+        if (selectTags === 0) {
+            setTags(flag);
+            return
+        }
+
+        if ((selectTags & flag) !== 0) {
+            setTags(selectTags &~ flag);
+        } else {
+            setTags(selectTags | flag);
         }
     }
 
@@ -156,18 +171,66 @@ function Search() {
                             placeholder="Type something in the search bar to get exploring..."/>
                     </div>
                     <div className="flex justify-start items-center space-x-4 h-32 w-full">
-                        <TagButton start={true} name="All"/>
-                        <TagButton start={false} name="Action"/>
-                        <TagButton start={false} name="Drama"/>
-                        <TagButton start={false} name="Comedy"/>
-                        <TagButton start={false} name="Fantasy"/>
-                        <TagButton start={false} name="Yuri"/>
-                        <TagButton start={false} name="Shounen"/>
-                        <TagButton start={false} name="Harem"/>
-                        <TagButton start={false} name="Yaoi"/>
-                        <TagButton start={false} name="Romance"/>
-                        <TagButton start={false} name="Music"/>
-                        <TagButton start={false} name="Tournaments"/>
+                        <TagButton
+                            onClick={() => onTagSelect(0)}
+                            start={selectTags === 0}
+                            name="All"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.action)}
+                            start={(selectTags & tags.action) !== 0}
+                            name="Action"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.drama)}
+                            start={(selectTags & tags.drama) !== 0}
+                            name="Drama"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.comedy)}
+                            start={(selectTags & tags.comedy) !== 0}
+                            name="Comedy"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.fantasy)}
+                            start={(selectTags & tags.fantasy) !== 0}
+                            name="Fantasy"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.yuri)}
+                            start={(selectTags & tags.yuri) !== 0}
+                            name="Yuri"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.shounen)}
+                            start={(selectTags & tags.shounen) !== 0}
+                            name="Shounen"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.harem)}
+                            start={(selectTags & tags.harem) !== 0}
+                            name="Harem"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.yaoi)}
+                            start={(selectTags & tags.yaoi) !== 0}
+                            name="Yaoi"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.romance)}
+                            start={(selectTags & tags.romance) !== 0}
+                            name="Romance"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.music)}
+                            start={(selectTags & tags.music) !== 0}
+                            name="Music"
+                        />
+                        <TagButton
+                            onClick={() => onTagSelect(tags.tournaments)}
+                            start={(selectTags & tags.tournaments) !== 0}
+                            name="Tournaments"
+                        />
                     </div>
                     <div className="flex h-full">
                         <div className="flex flex-col w-64 h-full">

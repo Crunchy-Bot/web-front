@@ -24,6 +24,8 @@ export const tags = {
     war: 1 << 22,
 }
 
+
+
 export function parseTagBitflags(flags) {
     let results = [];
     for (const key in tags) {

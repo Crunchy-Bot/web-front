@@ -1,10 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import ReactTooltip from "react-tooltip";
-
-
-const sleep = (milliseconds) => {
-  return new Promise(resolve => setTimeout(resolve, milliseconds))
-}
+import {parseTagBitflags} from "../utils/BitFlags";
 
 
 let counter = 0;
@@ -76,7 +72,9 @@ function Toggles(props) {
 
 
 function Card(props) {
-    const [isHover, setHover] = useState(props.active);
+    let data = props.data;
+
+    const [isHover, setHover] = useState(false);
 
     let cardSize;
     let imgTrans;
@@ -92,22 +90,13 @@ function Card(props) {
     }
 
 
-    const title = "Bureau of Proto Society";
-    const description = "In the far distant future… Humans are living in the " +
-        "underground shelters under the complete controlled " +
-        "situation.\"Why has the world gone to ruin, and what " +
-        "have made humans stay in the shelters?\" " +
-        "Every day the members of BUREAU OF PROT SOCIETY " +
-        "debate the cause of the fall of the world from the " +
-        "past documentary videos... probably. " +
-        "ahhhhhhhhhhhhhhhhhhhhhhh " +
-        "ahhhhhhhhhhhhhhhhhhhhhhh" +
-        "ahhhhhhhhhhhhhhhhhhhhhhhhhhh " +
-        "ahhhhhhh " +
-        "ah " +
-        " ah " +
-        "";
-    const tags = "action, comedy, sci_fi";
+    const title = data.title;
+    const description = data.description;
+    const imgUrl = `https://cdn.crunchy.gg${data.thumbnail}`;
+    const tags = parseTagBitflags(data.tags).join(", ");
+    const url = data.url;
+    const bookmarked = data.isBookmarked;
+    const favourite = data.isFavourite;
 
     return (
       <div
@@ -121,7 +110,7 @@ function Card(props) {
       >
           <img
               className={`w-40 h-64 rounded-lg shadow-small-sharp transition duration-200 transform ${imgTrans}`}
-              src="https://cdn.crunchy.gg/thumbnails/anime/I0EmQCxSYChoZWE.jpg"
+              src={imgUrl}
               alt=""
           />
           <div className={`${textBlock} flex flex-col justify-between h-full w-full overflow-hidden py-2`}>
@@ -129,14 +118,14 @@ function Card(props) {
                 <h1 className="font-bold text-white text-lg border-b-2 border-crunchy">
                     { title }
                 </h1>
-                <Toggles/>
+                <Toggles url={url} favourite={favourite} watchlist={bookmarked}/>
               </div>
               <div className="flex flex-col justify-between h-full overflow-y-auto pr-4">
                   <p className="py-2 text-white break-words">
                       { description }
                   </p>
               </div>
-              <div className="text-gray-300">
+              <div className="text-gray-300 pr-4">
                 <code>{ tags }</code>
               </div>
           </div>
@@ -144,22 +133,5 @@ function Card(props) {
     )
 }
 
-
-function ResultCard() {
-    return (
-        <div className="flex flex-wrap justify-evenly space-x-8 px-16">
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-            <Card active={false}/>
-        </div>
-    )
-}
 
 export default Card;
