@@ -112,6 +112,7 @@ function Card(props) {
               className={`w-40 h-64 rounded-lg shadow-small-sharp transition duration-200 transform ${imgTrans}`}
               src={imgUrl}
               alt=""
+              loading="lazy"
           />
           <div className={`${textBlock} flex flex-col justify-between h-full w-full overflow-hidden py-2`}>
               <div className="flex justify-between w-full mb-2">
