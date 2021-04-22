@@ -17,7 +17,9 @@ import Faq from './pages/Faq';
 import NotFound from "./pages/NotFound";
 import Search from "./pages/Search";
 import Authorized from "./pages/Authorized";
-import NewCard from "./components/ResultCard";
+import {AnimeView, MangaView} from "./pages/EntityView";
+import Server from "./pages/Server";
+import User from "./pages/User";
 
 import reportWebVitals from './reportWebVitals';
 import {loginRedirectURI} from "./auth";
@@ -44,6 +46,13 @@ ReactDOM.render(
                        <Route path="/faq" component={ Faq } />
                        <Route path="/search" component={ Search } />
                        <Route path="/authorized" component={ Authorized } />
+
+                       <Route path="/manga/:id" component={ MangaView } />
+                       <Route path="/anime/:id" component={ AnimeView } />
+
+                       <Route path="/user/:id" component={ User } />
+                       <Route path="/server/:id" component={ Server } />
+
                        <Route component={ NotFound } />
                    </Switch>
                </div>
