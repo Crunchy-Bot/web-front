@@ -8,8 +8,14 @@ const iconArea = process.env.PUBLIC_URL;
 function User(props) {
     let id = props.id;
 
+    let example = {
+        icon: "https://cdn.crunchy.gg/thumbnails/anime/I0coXW1xRHwmOkk.jpg",
+        msg: "The garden of sinners",
+        url: "/anime/I0coXW1xRHwmOkk"
+    };
+
     return (
-        <>
+        <div className="bg-gradient-about">
             <div className="flex flex-col items-center w-full px-8">
                 <div className="flex justify-between h-64 w-11/12">
                     <div className="flex w-3/4">
@@ -56,15 +62,17 @@ function User(props) {
 
                     </div>
                 </div>
-                <div className="flex flex-col w-11/12">
-                   <ListItems title="Favourites"/>
-                   <ListItems title="Watchlist"/>
-                   <ListItems title="Recommended"/>
-                   <ListItems title="Collect Characters"/>
+                <div className="flex flex-col w-11/12 mt-12 border-l-2 border-cr-blue px-4">
+                    <div className="flex mx-2 mb-2">
+                        <button className="text-white text-lg font-semibold mx-4 border-b-2 border-crunchy">Favourites</button>
+                        <button className="text-white text-lg font-semibold mx-4">Watchlist</button>
+                        <button className="text-white text-lg font-semibold mx-4">Recommended</button>
+                    </div>
+                   <ListItems title="Favourites" entities={[example, example, example, example, ]}/>
                 </div>
             </div>
             <Footer/>
-        </>
+        </div>
     )
 }
 
