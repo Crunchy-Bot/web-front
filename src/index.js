@@ -41,6 +41,9 @@ ReactDOM.render(
                        <Route exact path="/login" component={ () => {
                            window.location = loginRedirectURI
                        } } />
+                       <Route exact path="/github" component={ () => {
+                           window.location = "https://github.com/Crunchy-Bot"
+                       } } />
                        <Route path="/home" component={ Home } />
                        <Route path="/commands" component={ Commands } />
                        <Route path="/faq" component={ Faq } />

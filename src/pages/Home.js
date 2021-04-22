@@ -76,7 +76,7 @@ function Home() {
                         We have support for
                         the entire Crunchyroll anime collection<br/>
                         as well as manga and more.<br/>
-                        using the
+                        Using the
                         <span className="text-crunchy font-semibold pl-1">anime</span>,
                         <span className="text-crunchy font-semibold px-1">manga</span>
                         and
@@ -101,7 +101,7 @@ function Home() {
                         and
                         <span className="text-crunchy font-semibold px-1">news</span>
                         from Crunchyroll in your <br/>
-                        community with Crunchy's webhooks .
+                        community with Crunchy's webhooks.
                     </p>
                 </div>
             </div>
