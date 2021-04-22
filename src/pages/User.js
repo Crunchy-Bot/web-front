@@ -9,18 +9,31 @@ function User(props) {
     let id = props.id;
 
     let example = {
+        title: "Osamake: Romcom Where The Childhood Friend Won't Lose",
         icon: "https://cdn.crunchy.gg/thumbnails/anime/I0coXW1xRHwmOkk.jpg",
-        msg: "The garden of sinners",
-        url: "/anime/I0coXW1xRHwmOkk"
+        msg: "Sup fucker, hope you enjoy this :P",
+        desc: "Insert some generic anime description here",
+        url: "/anime/I0coXW1xRHwmOkk",
+        author: "marloso2",
+        viewed: false,
+    };
+    let example2 = {
+        title: "Darling in the FRANXX",
+        icon: "https://cdn.crunchy.gg/thumbnails/anime/I0coXW1xRHwmOkk.jpg",
+        msg: "Sup fucker, hope you enjoy this :P",
+        desc: "Insert some generic anime description here",
+        url: null,
+        author: "marloso2",
+        viewed: true,
     };
 
     return (
-        <div className="bg-gradient-about">
+        <div className="flex flex-col justify-between bg-gradient-about min-h-screen">
             <div className="flex flex-col items-center w-full px-8">
                 <div className="flex justify-between h-64 w-11/12">
                     <div className="flex w-3/4">
                         <img
-                            className="h-48 h-48 object-contain rounded-full shadow-small-sharp"
+                            className="self-center h-48 h-48 object-contain rounded-full shadow-small-sharp"
                             src={`${iconArea}/cf-512.webp`}
                             alt=""
                             loading="lazy"
@@ -31,7 +44,8 @@ function User(props) {
                                     ChillFish8
                                 </h1>
                             </div>
-                            <p className="text-gray-400 text-lg bg-discord-dark rounded p-4 h-full w-full">
+                            <h1 className="text-gray-100 text-lg font-semibold">Bio</h1>
+                            <p className="text-gray-400 text-lg px-4 py-2 my-4 border-l-2 border-gray-800 w-full">
                                 Life is hard.
                             </p>
                         </div>
@@ -62,13 +76,13 @@ function User(props) {
 
                     </div>
                 </div>
-                <div className="flex flex-col w-11/12 mt-12 border-l-2 border-cr-blue px-4">
+                <div className="flex flex-col w-11/12 mt-12 px-4">
                     <div className="flex mx-2 mb-2">
-                        <button className="text-white text-lg font-semibold mx-4 border-b-2 border-crunchy">Favourites</button>
+                        <button className="text-white text-lg font-semibold mx-4 ">Favourites</button>
                         <button className="text-white text-lg font-semibold mx-4">Watchlist</button>
-                        <button className="text-white text-lg font-semibold mx-4">Recommended</button>
+                        <button className="text-white text-lg font-semibold mx-4 border-b-2 border-crunchy">Recommended</button>
                     </div>
-                   <ListItems title="Favourites" entities={[example, example, example, example, ]}/>
+                   <ListItems entities={[example, example2]}/>
                 </div>
             </div>
             <Footer/>

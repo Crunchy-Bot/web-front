@@ -8,6 +8,7 @@
   --discord: #2C2F33;
   --discordDark: #23272A;
   --cardbg: #23272A;
+  --soNearlyBlack: #0E191E;
   --crBlue: #2DBDBB;
 }
 
@@ -54,6 +55,10 @@ code {
   border-color: var(--crBlue);
 }
 
+.border-so-nearly-black {
+  border-color: var(--soNearlyBlack);
+}
+
 .bg-cr-blue {
   background: var(--crBlue);
 }
@@ -76,6 +81,10 @@ code {
 
 .bg-discord-dark {
   background: var(--discordDark);
+}
+
+.bg-so-nearly-black {
+  background: var(--soNearlyBlack);
 }
 
 .text-discord {
