@@ -84,15 +84,22 @@ function RecommendedItem(props) {
 }
 
 
-function WatchlistItem(props) {
+function WFItem(props) {
+    let type = props.type;
     let data = props.data;
     let icon = data.icon;
     let link = data.url;
     let desc = data.desc;
     let title = data.title;
+    let booked = data.bookmarked;
 
     const [toggled, setToggle] = useState(false);
-    const [bookmarked, bookmark] = useState(false);
+    const [bookmarked, setBookmark] = useState(booked);
+
+
+    function toggleBookmark() {
+        setBookmark(!bookmarked);
+    }
 
     return (
         <div className="flex flex-col bg-discord-dark shadow-small-sharp rounded w-2/3 mx-4 my-2">
@@ -104,7 +111,7 @@ function WatchlistItem(props) {
                         </svg>
                     </button>
                     <button
-                        onClick={() => bookmark(!bookmarked)}
+                        onClick={() => toggleBookmark()}
                         className="outline-none focus:outline-none text-crunchy w-6 h-6">
                         { bookmarked ? (
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
@@ -154,76 +161,6 @@ function WatchlistItem(props) {
     )
 }
 
-
-function FavouritesItem(props) {
-    let data = props.data;
-    let icon = data.icon;
-    let link = data.url;
-    let desc = data.desc;
-    let title = data.title;
-
-    const [toggled, setToggle] = useState(false);
-    const [bookmarked, bookmark] = useState(false);
-
-    return (
-        <div className="flex flex-col bg-discord-dark shadow-small-sharp rounded w-2/3 mx-4 my-2">
-            <div className="flex justify-between items-center h-16">
-                <div className="flex items-center space-x-4 mx-4">
-                    <button className="text-red-700 w-6 h-6">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </button>
-                    <button
-                        onClick={() => bookmark(!bookmarked)}
-                        className="outline-none focus:outline-none text-crunchy w-6 h-6">
-                        { bookmarked ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                              <path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" />
-                            </svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                            </svg>
-                        )}
-                    </button>
-                    { link !== null ? (
-                        <Link to={link} className="text-blue-400 hover:text-blue-500 cursor-pointer font-semibold text-lg">
-                            { title }
-                        </Link>
-                    ) : (
-                        <h1 className="text-gray-300 cursor-default font-semibold text-lg">
-                            { title }
-                        </h1>
-                    ) }
-
-                </div>
-                <div className="mx-4">
-                    <button
-                        className={`transform ${toggled ? "-rotate-90" : "rotate-0"} transition duration-200 outline-none focus:outline-none text-white h-6 w-6`}
-                        onClick={() => setToggle(!toggled)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div className={`${!toggled ? "hidden": "flex"} h-64`}>
-                <div className="flex items-center mx-4">
-                    <img className="w-40 object-contain rounded shadow-small-sharp" src={icon} alt=""/>
-                    <div className="flex flex-col w-full h-full mx-4 py-4">
-                        <div className="flex pb-3">
-                            <h1 className="text-gray-100 font-semibold">Description</h1>
-                        </div>
-                        <p className="text-gray-400 text-lg border-l-2 border-crunchy w-full px-2">
-                            {desc}
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
 
 function ListItems(props) {
     let entities = props.entities;
@@ -234,10 +171,10 @@ function ListItems(props) {
         let item;
         switch (type) {
             case "favourites":
-                item = <FavouritesItem key={counter++} data={entity}/>
+                item = <WFItem type="favourites" key={counter++} data={entity}/>
                 break;
             case "watchlist":
-                item = <WatchlistItem key={counter++} data={entity}/>
+                item = <WFItem type="watchlist" key={counter++} data={entity}/>
                 break;
             case "recommended":
                 item = <RecommendedItem key={counter++} data={entity}/>

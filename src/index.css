@@ -30,6 +30,16 @@ code {
   transition: all .3s ease-in-out;
 }
 
+.item-hide {
+  height: 0;
+  max-height: 0;
+}
+
+.item-show {
+  height: 16rem;
+  max-height: 16rem;
+}
+
 .card-small {
   width: 10rem;
   max-width: 10rem;
