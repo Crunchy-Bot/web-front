@@ -192,7 +192,7 @@ function User(props) {
 
                     <div className="flex flex-col py-4 w-64">
                         <h1 className="text-white text-2xl font-bold">
-                            { user.name }<span className="text-gray-500 text-normal font-medium">#{ user.discriminator }</span>
+                            { user.name }<span className="text-gray-500 text-base font-medium">#{ user.discriminator }</span>
                         </h1>
                         <h1 className="text-gray-500">
                             { user.id }
