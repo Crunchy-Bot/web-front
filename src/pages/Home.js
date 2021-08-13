@@ -9,7 +9,7 @@ import Footer from "../components/Footer";
 const iconArea = process.env.PUBLIC_URL;
 
 
-let topGGCount = 11_000;
+let topGGCount = 15_000;
 
 /*
 const topGGUrl = "https://top.gg/api/bots/656598065532239892";
