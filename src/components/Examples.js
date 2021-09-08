@@ -99,7 +99,7 @@ function Example2() {
                     <div className="bg-discord-dark shadow-embed border-l-4 border-crunchy rounded-md mt-1">
                         <div className="flex items-center ml-3 pt-2">
                             <img alt="" className="h-8 w-8 mt-1"
-                                             src="https://images.crunchy.gg/content/news/ec73422e-5834-4dab-8be2-5e9f0745f156" />
+                                             src={ `${iconArea}/cr-logo.png` } />
                             <h1 className="px-1 xl:px-2 text-white text-base cursor-pointer hover:underline font-semibold xl:text-lg">
                                 Crunchyroll Anime News! - Click for more!
                             </h1>
@@ -110,7 +110,7 @@ function Example2() {
                             <a href="https://top.gg/bot/656598065532239892/vote" className="text-blue-400 cursor-pointer hover:underline">Vote for Crunchy </a>
                         </div>
                         <div className="flex w-full p-3">
-                            <img className="rounded-md" src={ `${iconArea}/news.png` } alt="" />
+                            <img className="rounded-md" src="https://images.crunchy.gg/content/news/ec73422e-5834-4dab-8be2-5e9f0745f156" alt="" />
                         </div>
                         <div className="image flex items-end px-3">
                             <div className="flex pt-1 pb-3">
