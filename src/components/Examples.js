@@ -99,7 +99,7 @@ function Example2() {
                     <div className="bg-discord-dark shadow-embed border-l-4 border-crunchy rounded-md mt-1">
                         <div className="flex items-center ml-3 pt-2">
                             <img alt="" className="h-8 w-8 mt-1"
-                                             src={ `${iconArea}/cr-logo.png` } />
+                                             src="https://images.crunchy.gg/content/news/ec73422e-5834-4dab-8be2-5e9f0745f156" />
                             <h1 className="px-1 xl:px-2 text-white text-base cursor-pointer hover:underline font-semibold xl:text-lg">
                                 Crunchyroll Anime News! - Click for more!
                             </h1>
